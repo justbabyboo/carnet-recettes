@@ -48,6 +48,20 @@
   .tab[aria-selected="true"] .count{background:var(--zest)}
 
   /* Recipe grid */
+  .toolbar{margin-bottom:18px}
+  .searchwrap{position:relative; margin-bottom:14px}
+  .searchwrap .searchic{position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--stone); font-size:18px}
+  #search{width:100%; border:1px solid var(--line); background:var(--card); border-radius:999px; padding:11px 16px 11px 40px; font-family:inherit; font-size:15px; color:var(--ink); -webkit-appearance:none}
+  #search:focus{outline:none; border-color:var(--herb)}
+  .fgroup{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+  .fglabel{font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--stone); font-weight:600; min-width:62px}
+  .fchip{appearance:none; border:1px solid var(--line); background:var(--card); color:var(--ink); font-family:inherit; font-size:13px; padding:5px 12px; border-radius:999px; cursor:pointer; transition:.13s ease}
+  .fchip:hover{border-color:var(--herb)}
+  .fchip.on{background:var(--herb); color:#fff; border-color:var(--herb)}
+  .filterbar{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:4px; min-height:20px}
+  .rcount{font-size:13px; color:var(--stone)}
+  .resetf{appearance:none; border:0; background:transparent; color:var(--herb); font-size:13px; cursor:pointer; text-decoration:underline; text-underline-offset:2px}
+  .tbadge{font-size:11px; color:var(--stone); background:var(--paper); border:1px solid var(--line); padding:2px 8px; border-radius:999px; font-weight:500}
   .grid{display:grid; grid-template-columns:1fr; gap:16px}
   @media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
   .card{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; opacity:0; transform:translateY(8px); animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards}
@@ -89,6 +103,27 @@
   .photobtn{appearance:none; border:1px solid var(--herb); background:var(--herb-soft); color:var(--herb); font-family:inherit; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px; cursor:pointer}
   .photolink{appearance:none; border:0; background:transparent; color:var(--stone); font-size:12px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; padding:0}
   .photo-msg{font-size:12px; color:var(--stone)}
+  /* note + commentaires */
+  .stars{display:inline-flex; gap:3px}
+  .star{font-size:24px; line-height:1; cursor:pointer; color:var(--line); transition:.1s ease; background:none; border:0; padding:0}
+  .star.on{color:var(--zest)}
+  .star:hover{transform:scale(1.12)}
+  .rate-meta{font-size:12px; color:var(--stone); margin-left:8px}
+  .clist{display:flex; flex-direction:column; gap:10px; margin:4px 0 14px}
+  .cempty{font-size:13px; color:var(--stone); padding:6px 0}
+  .cmt{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:10px 12px}
+  .cmt-h{display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:3px}
+  .cmt-a{font-size:13px; font-weight:600; color:var(--ink)}
+  .cmt-t{font-size:11px; color:var(--stone)}
+  .cmt-b{font-size:14px; color:var(--ink); white-space:pre-wrap; word-break:break-word}
+  .cmt-x{appearance:none; border:0; background:transparent; color:var(--stone); cursor:pointer; font-size:13px; padding:0; margin-left:6px}
+  .composer{display:flex; flex-direction:column; gap:8px; margin-bottom:8px}
+  .composer input, .composer textarea{width:100%; border:1px solid var(--line); border-radius:12px; padding:9px 12px; font-family:inherit; font-size:14px; color:var(--ink); background:var(--card); -webkit-appearance:none}
+  .composer input:focus, .composer textarea:focus{outline:none; border-color:var(--herb)}
+  .composer textarea{min-height:62px; resize:vertical}
+  .composer .cname{max-width:200px}
+  .cadd{align-self:flex-start; appearance:none; border:1px solid var(--herb); background:var(--herb); color:#fff; font-family:inherit; font-weight:600; font-size:13px; padding:8px 16px; border-radius:999px; cursor:pointer}
+  .cadd:disabled{opacity:.5; cursor:default}
   .subhd{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--stone); font-weight:600; margin:20px 0 10px}
   .ing-list{list-style:none; display:flex; flex-direction:column; gap:2px}
   .ing-list li{display:flex; justify-content:space-between; gap:14px; padding:7px 0; border-bottom:1px solid var(--line); font-size:14px}
@@ -138,6 +173,17 @@
   </nav>
 
   <section id="view-recipes">
+    <div class="toolbar">
+      <div class="searchwrap">
+        <span class="searchic">⌕</span>
+        <input id="search" type="search" placeholder="Rechercher une recette ou un ingrédient…" oninput="onSearch(this.value)" autocomplete="off">
+      </div>
+      <div id="filters"></div>
+      <div class="filterbar">
+        <span id="rcount" class="rcount"></span>
+        <button id="resetf" class="resetf" onclick="resetFilters()" hidden>Réinitialiser</button>
+      </div>
+    </div>
     <div class="grid" id="grid"></div>
   </section>
 
@@ -172,10 +218,31 @@ const CONFIG = {
 
 const AISLE_ORDER = ["Fruits","Légumes","Herbes","Crèmerie","Boulangerie","Épicerie"];
 
+/* ---- filtres ---- */
+const GROUP_DEFS = [
+  { label:"Type",    tags:["salade","pâtes","soupe","gratin"] },
+  { label:"Cuisson", tags:["four","sans cuisson","mijoté","poêle","friture"] },
+  { label:"Cuisine", tags:["italien","grec"] },
+  { label:"Régime",  tags:["végé","vegan"] },
+];
+const TIME_OPTS = [
+  { key:"15", label:"≤ 15 min", test:t=>t<=15 },
+  { key:"30", label:"≤ 30 min", test:t=>t<=30 },
+  { key:"60", label:"≤ 1 h",    test:t=>t<=60 },
+  { key:"61", label:"+ 1 h",    test:t=>t>60 },
+];
+const activeTags = new Set();   // tags sélectionnés
+let activeTime = null;          // clé de TIME_OPTS
+let query = "";                 // texte de recherche
+
 /* ---- state (en mémoire pour la session) ---- */
 const sel = new Map();        // id -> servings choisis
 const checked = new Set();    // "item__unit" cochés
 const overrides = new Map();  // recipe_id -> URL de photo perso (depuis Supabase)
+const ratings = new Map();    // recipe_id -> note (1..5), partagée
+const comments = new Map();   // recipe_id -> [ {id, author, body, created_at} ]
+let myName = "";              // prénom utilisé pour signer les commentaires (session)
+let openId = null;            // recette actuellement ouverte dans la fiche
 let view = "recipes";
 
 /* ---- helpers ---- */
@@ -183,6 +250,8 @@ const $ = s => document.querySelector(s);
 function fmt(n){ return (Math.round(n*100)/100).toString(); }
 function qtyText(qty,unit){ if(qty===0||qty==null) return ""; return unit ? `${fmt(qty)} ${unit}` : `${fmt(qty)}`; }
 function imageFor(r){ return overrides.get(r.id) || r.image; }  // photo perso prioritaire
+function esc(s){ return (s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function cdate(s){ try{ return new Date(s).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+new Date(s).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; } }
 /* teinte gourmande par recette (utilisée tant qu'il n'y a pas de photo) */
 function tintFor(r){
   const map={
@@ -196,6 +265,25 @@ function tintFor(r){
   return `radial-gradient(120% 100% at 30% 22%, ${c[0]}, ${c[1]})`;
 }
 
+/* ---- filtrage ---- */
+function matchesRecipe(r){
+  if(query){
+    const q = query.toLowerCase();
+    const hit = r.name.toLowerCase().includes(q) || r.ingredients.some(i=>i.item.toLowerCase().includes(q));
+    if(!hit) return false;
+  }
+  if(activeTime){
+    const opt = TIME_OPTS.find(o=>o.key===activeTime);
+    if(opt && !opt.test(r.temps||999)) return false;
+  }
+  // chaque groupe ayant des tags actifs doit avoir au moins une correspondance (ET entre groupes, OU dans un groupe)
+  for(const g of GROUP_DEFS){
+    const act = g.tags.filter(t=>activeTags.has(t));
+    if(act.length && !act.some(t=>r.tags.includes(t))) return false;
+  }
+  return true;
+}
+
 /* ---- render recipes ---- */
 function renderGrid(){
   const g = $("#grid"); g.innerHTML = "";
@@ -203,11 +291,16 @@ function renderGrid(){
     g.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="big">📖</div><p>Aucune recette chargée. Vérifie que <code>recipes.js</code> est bien à côté de <code>index.html</code>.</p></div>`;
     return;
   }
-  RECIPES.forEach((r,i)=>{
+  const list = RECIPES.filter(matchesRecipe);
+  updateFilterBar(list.length);
+  if(!list.length){
+    g.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="big">🔍</div><p>Aucune recette ne correspond. Essaie d'enlever un filtre ou de changer ta recherche.</p></div>`;
+    return;
+  }
+  list.forEach((r,i)=>{
     if(!sel.has(r.id)) sel.set(r.id, r.servings);
-    const inCart = sel.get(r.id)!==null && cartHas(r.id);
     const card = document.createElement("article");
-    card.className="card"; card.style.animationDelay=(i*60)+"ms";
+    card.className="card"; card.style.animationDelay=(i*55)+"ms";
     card.innerHTML = `
       <div class="thumb" onclick="openSheet('${r.id}')">
         <div class="fallback" style="background:${tintFor(r)}">${r.emoji}</div>
@@ -215,7 +308,7 @@ function renderGrid(){
       </div>
       <div class="meta">
         <div class="rname" onclick="openSheet('${r.id}')">${r.name}</div>
-        <div class="tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}${r.temps?`<span class="tbadge">⏱ ${r.temps} min</span>`:``}${ratings.get(r.id)?`<span class="tbadge">★ ${ratings.get(r.id)}</span>`:``}${(comments.get(r.id)||[]).length?`<span class="tbadge">💬 ${(comments.get(r.id)||[]).length}</span>`:``}</div>
         <div class="row">
           <div class="stepper">
             <button onclick="bump('${r.id}',-1)" aria-label="moins">–</button>
@@ -229,6 +322,32 @@ function renderGrid(){
       </div>`;
     g.appendChild(card);
   });
+}
+
+/* ---- UI des filtres ---- */
+function renderFilters(){
+  const host = $("#filters"); if(!host) return;
+  const all = new Set(RECIPES.flatMap(r=>r.tags));
+  let html = "";
+  GROUP_DEFS.forEach(g=>{
+    const tags = g.tags.filter(t=>all.has(t));
+    if(!tags.length) return;
+    html += `<div class="fgroup"><span class="fglabel">${g.label}</span>` +
+      tags.map(t=>`<button class="fchip ${activeTags.has(t)?'on':''}" onclick="toggleFilter('${t}')">${t}</button>`).join("") + `</div>`;
+  });
+  html += `<div class="fgroup"><span class="fglabel">Temps</span>` +
+    TIME_OPTS.map(o=>`<button class="fchip ${activeTime===o.key?'on':''}" onclick="setTime('${o.key}')">${o.label}</button>`).join("") + `</div>`;
+  host.innerHTML = html;
+}
+function toggleFilter(t){ activeTags.has(t)?activeTags.delete(t):activeTags.add(t); renderFilters(); renderGrid(); }
+function setTime(k){ activeTime = (activeTime===k? null : k); renderFilters(); renderGrid(); }
+function onSearch(v){ query = v.trim(); renderGrid(); }
+function resetFilters(){ activeTags.clear(); activeTime=null; query=""; const s=$("#search"); if(s) s.value=""; renderFilters(); renderGrid(); }
+function updateFilterBar(n){
+  const active = activeTags.size>0 || activeTime || query;
+  const c = $("#rcount"), btn = $("#resetf");
+  if(c) c.textContent = active ? `${n} recette${n>1?"s":""}` : "";
+  if(btn) btn.hidden = !active;
 }
 
 const cart = new Set();
@@ -279,11 +398,66 @@ function openSheet(id){
     <div class="subhd">Ingrédients · ${r.servings} pers.</div>
     <ul class="ing-list">${ing}</ul>
     <div class="subhd">Préparation</div>
-    <ol class="steps">${steps}</ol>`;
+    <ol class="steps">${steps}</ol>
+    <div class="subhd">Note</div>
+    <div id="rate-${r.id}"></div>
+    <div class="subhd">Commentaires</div>
+    <div class="clist" id="clist-${r.id}"></div>
+    <div class="composer">
+      <input class="cname" id="cauthor" placeholder="Votre prénom" value="${esc(myName)}" oninput="myName=this.value">
+      <textarea id="cbody" placeholder="Une note, une astuce, un avis… (ex. « plus de citron la prochaine fois »)" oninput="$('#cadd-${r.id}').disabled=!this.value.trim()"></textarea>
+      <button class="cadd" id="cadd-${r.id}" onclick="addComment('${r.id}')" disabled>Ajouter</button>
+    </div>`;
+  openId = id;
+  renderRating(id);
+  renderComments(id);
   $("#sheet").classList.add("open"); $("#sheet-back").classList.add("open");
 }
-function closeSheet(){ $("#sheet").classList.remove("open"); $("#sheet-back").classList.remove("open"); }
+function closeSheet(){ openId=null; $("#sheet").classList.remove("open"); $("#sheet-back").classList.remove("open"); }
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); });
+
+/* ---- note (étoiles) ---- */
+function renderRating(id){
+  const host = $("#rate-"+id); if(!host) return;
+  const cur = ratings.get(id) || 0;
+  let stars = "";
+  for(let n=1;n<=5;n++) stars += `<button class="star ${n<=cur?'on':''}" onclick="setRating('${id}',${n})" aria-label="${n} étoile${n>1?'s':''}">★</button>`;
+  host.innerHTML = `<span class="stars">${stars}</span>` + (cur?`<span class="rate-meta">${cur}/5</span>`:`<span class="rate-meta">pas encore notée</span>`);
+}
+function setRating(id,n){
+  const cur = ratings.get(id);
+  if(cur===n){ ratings.delete(id); } else { ratings.set(id,n); }   // re-cliquer la même étoile annule
+  renderRating(id); renderGrid();
+  ratings.has(id) ? dbSetRating(id, ratings.get(id)) : dbDelRating(id);
+}
+
+/* ---- commentaires ---- */
+function renderComments(id){
+  const host = $("#clist-"+id); if(!host) return;
+  const arr = comments.get(id) || [];
+  if(!arr.length){ host.innerHTML = `<div class="cempty">Aucun commentaire pour l'instant.</div>`; return; }
+  host.innerHTML = arr.map(c=>`
+    <div class="cmt">
+      <div class="cmt-h">
+        <span class="cmt-a">${esc(c.author)||"Anonyme"}</span>
+        <span><span class="cmt-t">${cdate(c.created_at)}</span><button class="cmt-x" onclick="delComment('${id}','${c.id}')" aria-label="supprimer">✕</button></span>
+      </div>
+      <div class="cmt-b">${esc(c.body)}</div>
+    </div>`).join("");
+}
+function addComment(id){
+  const ta = $("#cbody"); const body = (ta.value||"").trim(); if(!body) return;
+  const author = (($("#cauthor")||{}).value||"").trim(); myName = author;
+  const row = { id:"tmp"+Date.now(), recipe_id:id, author, body, created_at:new Date().toISOString() };
+  const arr = comments.get(id) || []; arr.push(row); comments.set(id, arr);
+  ta.value = ""; $("#cadd-"+id).disabled = true; renderComments(id);
+  dbAddComment(id, author, body);
+}
+function delComment(id, cid){
+  const arr = (comments.get(id)||[]).filter(c=>String(c.id)!==String(cid));
+  comments.set(id, arr); renderComments(id);
+  if(!String(cid).startsWith("tmp")) dbDelComment(cid);
+}
 
 /* ---- shopping list (auto) ---- */
 function buildList(){
@@ -370,6 +544,10 @@ async function dbUncheck(key){ if(!SHARED)return; try{ await supa.from("checks")
 async function dbClearChecks(){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST); }catch(e){console.warn(e);} }
 async function dbSetImage(id,url){ if(!SHARED)return; try{ await supa.from("recipe_images").upsert({recipe_id:id,url,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
 async function dbDelImage(id){ if(!SHARED)return; try{ await supa.from("recipe_images").delete().eq("recipe_id",id); }catch(e){console.warn(e);} }
+async function dbSetRating(id,stars){ if(!SHARED)return; try{ await supa.from("recipe_ratings").upsert({recipe_id:id,stars,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
+async function dbDelRating(id){ if(!SHARED)return; try{ await supa.from("recipe_ratings").delete().eq("recipe_id",id); }catch(e){console.warn(e);} }
+async function dbAddComment(id,author,body){ if(!SHARED)return; try{ await supa.from("recipe_comments").insert({recipe_id:id,author,body}); }catch(e){console.warn(e);} }
+async function dbDelComment(cid){ if(!SHARED)return; try{ await supa.from("recipe_comments").delete().eq("id",cid); }catch(e){console.warn(e);} }
 
 /* ---- changer la photo d'une recette (upload Supabase Storage) ---- */
 function pmsg(id,t){ const e=$("#pm-"+id); if(e) e.textContent=t; }
@@ -406,10 +584,12 @@ let pulling=false;
 async function pullState(){
   if(!SHARED || pulling) return; pulling=true;
   try{
-    const [c,k,im] = await Promise.all([
+    const [c,k,im,ra,cm] = await Promise.all([
       supa.from("cart").select("recipe_id,servings").eq("list_id",LIST),
       supa.from("checks").select("item_key").eq("list_id",LIST),
-      supa.from("recipe_images").select("recipe_id,url")
+      supa.from("recipe_images").select("recipe_id,url"),
+      supa.from("recipe_ratings").select("recipe_id,stars"),
+      supa.from("recipe_comments").select("id,recipe_id,author,body,created_at").order("created_at",{ascending:true})
     ]);
     cart.clear();
     (c.data||[]).forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); });
@@ -417,18 +597,25 @@ async function pullState(){
     (k.data||[]).forEach(r=>checked.add(r.item_key));
     overrides.clear();
     (im.data||[]).forEach(r=>overrides.set(r.recipe_id, r.url));
+    ratings.clear();
+    (ra.data||[]).forEach(r=>ratings.set(r.recipe_id, r.stars));
+    comments.clear();
+    (cm.data||[]).forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); });
     renderGrid(); updateCount(); if(view==="cart") renderCart();
+    if(openId){ renderRating(openId); renderComments(openId); }
   }catch(e){ console.warn(e); }
   pulling=false;
 }
 
-renderGrid(); updateCount(); showStatus();
+renderFilters(); renderGrid(); updateCount(); showStatus();
 if(SHARED){
   pullState();
   supa.channel("carnet-"+LIST)
     .on("postgres_changes",{event:"*",schema:"public",table:"cart"},   pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"checks"}, pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_images"}, pullState)
+    .on("postgres_changes",{event:"*",schema:"public",table:"recipe_ratings"}, pullState)
+    .on("postgres_changes",{event:"*",schema:"public",table:"recipe_comments"}, pullState)
     .subscribe();
 }</script>
 </body>
