@@ -22,7 +22,7 @@
 window.RECIPES = [
   {
     id:"green-goddess", name:"Green Goddess Salad", emoji:"🥗",
-    image:"images/green-goddess.jpg", servings:4, tags:["végé","salade"],
+    image:"images/green-goddess.jpg", servings:4, temps:20, tags:["végé","salade"],
     ingredients:[
       {item:"chou vert", qty:600, unit:"g", cat:"Légumes"},
       {item:"concombre", qty:1, unit:"", cat:"Légumes"},
@@ -46,7 +46,7 @@ window.RECIPES = [
   },
   {
     id:"pasteque-feta", name:"Pastèque & feta", emoji:"🍉",
-    image:"images/pasteque-feta.jpg", servings:4, tags:["végé","sans cuisson"],
+    image:"images/pasteque-feta.jpg", servings:4, temps:10, tags:["végé","salade","sans cuisson"],
     ingredients:[
       {item:"pastèque", qty:800, unit:"g", cat:"Fruits"},
       {item:"feta", qty:200, unit:"g", cat:"Crèmerie"},
@@ -63,7 +63,7 @@ window.RECIPES = [
   },
   {
     id:"pates-courgette", name:"Pâtes froides citron & courgette", emoji:"🍋",
-    image:"images/pates-courgette.jpg", servings:4, tags:["végé"],
+    image:"images/pates-courgette.jpg", servings:4, temps:25, tags:["végé","pâtes"],
     ingredients:[
       {item:"pâtes courtes", qty:350, unit:"g", cat:"Épicerie"},
       {item:"courgette", qty:2, unit:"", cat:"Légumes"},
@@ -82,7 +82,7 @@ window.RECIPES = [
   },
   {
     id:"gaspacho", name:"Gaspacho", emoji:"🍅",
-    image:"images/gaspacho.jpg", servings:4, tags:["vegan","sans cuisson"],
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Gazpacho%20-%20La%20Ola.JPG?width=800", servings:4, temps:15, tags:["vegan","soupe","sans cuisson"],
     ingredients:[
       {item:"tomates mûres", qty:1, unit:"kg", cat:"Légumes"},
       {item:"concombre", qty:1, unit:"", cat:"Légumes"},
@@ -100,7 +100,7 @@ window.RECIPES = [
   },
   {
     id:"parmigiana", name:"Parmigiana", emoji:"🍆",
-    image:"images/parmigiana.jpg", servings:6, tags:["végé","italien","four"],
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Parmigiana%20di%20melanzane.jpg?width=800", servings:6, temps:120, tags:["végé","gratin","italien","four"],
     ingredients:[
       {item:"aubergines (grosses)", qty:3, unit:"", cat:"Légumes"},
       {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
@@ -127,7 +127,7 @@ window.RECIPES = [
   },
   {
     id:"salade-cyclades", name:"Salade verte des Cyclades", emoji:"🫒",
-    image:"images/salade-cyclades.jpg", servings:4, tags:["végé","salade","grec"],
+    image:"https://commons.wikimedia.org/wiki/Special:FilePath/Greece%20Food%20Horiatiki.JPG?width=800", servings:4, temps:15, tags:["végé","salade","grec"],
     ingredients:[
       {item:"concombre", qty:1, unit:"", cat:"Légumes"},
       {item:"batavia", qty:0.5, unit:"", cat:"Légumes"},
@@ -149,7 +149,7 @@ window.RECIPES = [
   },
   {
     id:"salade-fenouil", name:"Fenouil, agrumes & pistaches", emoji:"🍊",
-    image:"images/salade-fenouil.jpg", servings:4, tags:["végé","salade","frais"],
+    image:"images/salade-fenouil.jpg", servings:4, temps:20, tags:["végé","salade"],
     ingredients:[
       {item:"fenouil", qty:1, unit:"bulbe", cat:"Légumes"},
       {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
@@ -174,7 +174,7 @@ window.RECIPES = [
   },
   {
     id:"courgettes-feta", name:"Courgettes pimentées sur lit de feta", emoji:"🌶️",
-    image:"images/courgettes-feta.jpg", servings:4, tags:["végé","grec"],
+    image:"images/courgettes-feta.jpg", servings:4, temps:30, tags:["végé","poêle","grec"],
     ingredients:[
       {item:"courgettes", qty:4, unit:"", cat:"Légumes"},
       {item:"ail", qty:4, unit:"gousses", cat:"Légumes"},
@@ -197,7 +197,7 @@ window.RECIPES = [
   },
   {
     id:"boulettes-champignons", name:"Boulettes de champignons, sauce tomate", emoji:"🍝",
-    image:"images/boulettes-champignons.jpg", servings:4, tags:["végé","pâtes"],
+    image:"images/boulettes-champignons.jpg", servings:4, temps:50, tags:["végé","pâtes"],
     ingredients:[
       {item:"oignon", qty:1, unit:"", cat:"Légumes"},
       {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
@@ -231,7 +231,7 @@ window.RECIPES = [
   },
   {
     id:"haricots-grecs", name:"Haricots sauce tomate à la grecque", emoji:"🫘",
-    image:"images/haricots-grecs.jpg", servings:4, tags:["vegan","grec","mijoté"],
+    image:"images/haricots-grecs.jpg", servings:4, temps:60, tags:["vegan","mijoté","grec"],
     ingredients:[
       {item:"haricots verts", qty:500, unit:"g", cat:"Légumes"},
       {item:"pommes de terre à chair ferme", qty:2, unit:"", cat:"Légumes"},
