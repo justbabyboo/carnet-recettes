@@ -320,5 +320,27 @@ window.RECIPES = [
       "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
       "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
     ]
+  },
+  {
+    id:"houmous", name:"Houmous", emoji:"🧆",
+    image:"images/houmous.jpg", servings:4, temps:10, tags:["vegan","sans cuisson"],
+    ingredients:[
+      {item:"pois chiches cuits", qty:400, unit:"g", cat:"Épicerie"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"citron", qty:0.5, unit:"", cat:"Fruits"},
+      {item:"tahini", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"glaçons", qty:3, unit:"", cat:"Épicerie"},
+      {item:"persil plat", qty:3, unit:"branches", cat:"Herbes"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sumac", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Pèle les pois chiches pour une texture extra-lisse.",
+      "Mets les pois chiches, l'ail, le sel, le tahini et l'huile d'olive dans un mixeur, presse le jus de citron et mixe à vitesse moyenne.",
+      "Ajoute les glaçons progressivement pour garder le mélange frais et obtenir une texture crémeuse. Ajuste avec plus de citron, tahini ou sel si besoin.",
+      "Sers avec une garniture de sumac, cumin et persil, et un filet d'huile d'olive."
+    ]
   }
 ];
