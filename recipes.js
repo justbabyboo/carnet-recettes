@@ -250,5 +250,32 @@ window.RECIPES = [
       "Incorpore concentré, coulis, sucre, origan et sel, puis couvre d'eau à hauteur.",
       "Mijote 35–45 min jusqu'à ce que les légumes soient fondants. Sers avec du riz."
     ]
+  },
+  {
+    id:"kisir", name:"Kısır (salade de boulgour turque)", emoji:"🌾",
+    image:"images/kisir.jpg", servings:6, temps:40, tags:["vegan","salade","sans cuisson"],
+    ingredients:[
+      {item:"boulgour fin (köftelik)", qty:220, unit:"g", cat:"Épicerie"},
+      {item:"oignons nouveaux", qty:8, unit:"", cat:"Légumes"},
+      {item:"persil plat", qty:1, unit:"botte", cat:"Herbes"},
+      {item:"menthe fraîche", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"concentré de tomate", qty:1.5, unit:"c.s.", cat:"Épicerie"},
+      {item:"concentré de piment (biber salçası)", qty:1.5, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"mélasse de grenade (nar ekşisi)", qty:7, unit:"c.s.", cat:"Épicerie"},
+      {item:"citron", qty:0.5, unit:"", cat:"Fruits"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre noir", qty:0, unit:"", cat:"Épicerie"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Verse l'eau (≈600 ml, moitié bouillante / moitié à température ambiante) sur le boulgour, couvre d'une assiette et laisse gonfler 15–30 min, jusqu'à ce que les grains soient tendres.",
+      "Pendant ce temps, hache très finement les oignons nouveaux, le persil et la menthe.",
+      "Mélange concentré de tomate, concentré de piment, huile d'olive, 3 c.s. de mélasse de grenade, sel, poivre et cumin en une sauce homogène.",
+      "Étale le boulgour gonflé dans un grand plat, ajoute la sauce et pétris à la main jusqu'à une couleur uniforme.",
+      "Incorpore d'abord la menthe et les oignons, mélange pour parfumer le boulgour, puis ajoute le persil. Pétris délicatement, sans écraser les herbes.",
+      "Ajoute 3 c.s. de mélasse de grenade et le jus du demi-citron. Pétris à peine : trop travaillé, la chaleur des mains « cuit » le citron et rend le goût âcre.",
+      "Transvase dans un saladier, arrose du dernier 1 c.s. de mélasse de grenade et sers frais, avec des feuilles de laitue. Afiyet olsun !"
+    ]
   }
 ];
