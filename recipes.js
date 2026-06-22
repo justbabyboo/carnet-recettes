@@ -322,5 +322,37 @@ window.RECIPES = [
       "Émiette la feta par-dessus.",
       "Assaisonne d'huile d'olive, de jus de citron, de sel et de poivre. Mélange et ajuste le reste à l'œil. Sers bien frais."
     ]
+  },
+  {
+    id:"wrap-frais", name:"Wrap frais (poulet ou végé)", emoji:"🌯",
+    image:"images/wrap-frais.jpg", servings:4, temps:25, tags:["végé","poêle","wrap"],
+    ingredients:[
+      {item:"tortillas de blé (wraps)", qty:8, unit:"", cat:"Boulangerie"},
+      {item:"émincé végétal (ou blanc de poulet)", qty:400, unit:"g", cat:"Crèmerie"},
+      {item:"laitue (ou jeunes pousses)", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"tomate", qty:2, unit:"", cat:"Légumes"},
+      {item:"carotte", qty:2, unit:"", cat:"Légumes"},
+      {item:"avocat", qty:1, unit:"", cat:"Légumes"},
+      {item:"oignon rouge", qty:1, unit:"", cat:"Légumes"},
+      {item:"graines de grenade", qty:1, unit:"", cat:"Fruits"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"coriandre fraîche (ou menthe)", qty:0, unit:"", cat:"Herbes"},
+      {item:"yaourt grec", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"paprika fumé", qty:0, unit:"", cat:"Épicerie"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Assaisonne l'émincé végétal (ou le poulet coupé en lanières) avec un peu d'huile, le paprika fumé, le cumin, du sel et du poivre.",
+      "Poêle à feu vif jusqu'à coloration : 5–6 min pour le végé, 8–10 min pour le poulet (bien cuit à cœur). Réserve.",
+      "Sauce : mélange le yaourt grec, l'ail écrasé, le jus de citron, du sel et du poivre.",
+      "Prépare les crudités : émince la laitue, le concombre, la tomate et l'oignon rouge ; râpe les carottes ; tranche l'avocat.",
+      "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
+      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
+    ]
   }
 ];
