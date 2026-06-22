@@ -277,5 +277,23 @@ window.RECIPES = [
       "Ajoute 3 c.s. de mélasse de grenade et le jus du demi-citron. Pétris à peine : trop travaillé, la chaleur des mains « cuit » le citron et rend le goût âcre.",
       "Transvase dans un saladier, arrose du dernier 1 c.s. de mélasse de grenade et sers frais, avec des feuilles de laitue. Afiyet olsun !"
     ]
+  },
+  {
+    id:"creme-feta-betterave", name:"Crème de feta à la betterave", emoji:"🥣",
+    image:"images/creme-feta-betterave.jpg", servings:4, temps:5, tags:["végé","sans cuisson"],
+    ingredients:[
+      {item:"betterave cuite", qty:130, unit:"g", cat:"Légumes"},
+      {item:"feta", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"persil plat", qty:4, unit:"branches", cat:"Herbes"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"aneth séché", qty:0, unit:"", cat:"Épicerie"},
+      {item:"graines de sésame", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Mets tous les ingrédients dans un mixeur, puis mixe jusqu'à obtenir une crème lisse.",
+      "Sers à l'apéro avec un filet d'huile d'olive et des graines de sésame. Idéal avec des pitas, du pain grillé ou des bâtonnets de crudités."
+    ]
   }
 ];
