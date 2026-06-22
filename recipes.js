@@ -335,6 +335,7 @@ window.RECIPES = [
       {item:"carotte", qty:2, unit:"", cat:"Légumes"},
       {item:"avocat", qty:1, unit:"", cat:"Légumes"},
       {item:"oignon rouge", qty:1, unit:"", cat:"Légumes"},
+      {item:"graines de grenade", qty:1, unit:"", cat:"Fruits"},
       {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
       {item:"coriandre fraîche (ou menthe)", qty:0, unit:"", cat:"Herbes"},
       {item:"yaourt grec", qty:200, unit:"g", cat:"Crèmerie"},
@@ -351,7 +352,7 @@ window.RECIPES = [
       "Sauce : mélange le yaourt grec, l'ail écrasé, le jus de citron, du sel et du poivre.",
       "Prépare les crudités : émince la laitue, le concombre, la tomate et l'oignon rouge ; râpe les carottes ; tranche l'avocat.",
       "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
-      "Tartine chaque wrap de sauce, garnis de crudités, de protéine et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
+      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
     ]
   }
 ];
