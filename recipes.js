@@ -196,40 +196,6 @@ window.RECIPES = [
     ]
   },
   {
-    id:"boulettes-champignons", name:"Boulettes de champignons, sauce tomate", emoji:"🍝",
-    image:"images/boulettes-champignons.jpg", servings:4, temps:50, tags:["végé","pâtes"],
-    ingredients:[
-      {item:"oignon", qty:1, unit:"", cat:"Légumes"},
-      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
-      {item:"ail", qty:5, unit:"gousses", cat:"Légumes"},
-      {item:"champignons de Paris", qty:300, unit:"g", cat:"Légumes"},
-      {item:"pomme de terre", qty:1, unit:"", cat:"Légumes"},
-      {item:"persil plat", qty:12, unit:"branches", cat:"Herbes"},
-      {item:"basilic", qty:0, unit:"", cat:"Herbes"},
-      {item:"flocons d'avoine", qty:50, unit:"g", cat:"Épicerie"},
-      {item:"chapelure", qty:50, unit:"g", cat:"Épicerie"},
-      {item:"œuf", qty:1, unit:"", cat:"Crèmerie"},
-      {item:"origan", qty:2, unit:"c.c.", cat:"Épicerie"},
-      {item:"thym", qty:2, unit:"c.c.", cat:"Épicerie"},
-      {item:"laurier", qty:1, unit:"feuille", cat:"Épicerie"},
-      {item:"sucre", qty:1, unit:"c.c.", cat:"Épicerie"},
-      {item:"concentré de tomate", qty:70, unit:"g", cat:"Épicerie"},
-      {item:"coulis de tomates", qty:400, unit:"ml", cat:"Épicerie"},
-      {item:"huile d'olive", qty:6, unit:"c.s.", cat:"Épicerie"},
-      {item:"huile de friture", qty:0, unit:"", cat:"Épicerie"},
-      {item:"spaghettis", qty:350, unit:"g", cat:"Épicerie"},
-      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
-      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
-    ],
-    steps:[
-      "Mixe oignon, ail, champignons et pomme de terre râpée, fais revenir pour assécher, puis laisse tiédir.",
-      "Ajoute origan, thym, persil, flocons d'avoine, chapelure et l'œuf, assaisonne et forme des boulettes.",
-      "Fais-les frire (ou dorer à la poêle) jusqu'à coloration, puis réserve.",
-      "Sauce : fais revenir l'oignon jaune et l'ail, ajoute laurier, origan, thym, sucre, concentré et coulis, mijote 20 min.",
-      "Cuis les spaghettis, nappe de sauce, ajoute les boulettes et le basilic."
-    ]
-  },
-  {
     id:"haricots-grecs", name:"Haricots sauce tomate à la grecque", emoji:"🫘",
     image:"images/haricots-grecs.jpg", servings:4, temps:60, tags:["vegan","mijoté","grec"],
     ingredients:[
