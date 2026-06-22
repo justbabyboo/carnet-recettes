@@ -81,6 +81,14 @@
   .sheet-hd h2{font-family:"Fraunces",serif; font-size:26px; font-weight:600; letter-spacing:-.01em; line-height:1.05}
   .close{appearance:none; border:1px solid var(--line); background:var(--card); width:34px; height:34px; border-radius:999px; cursor:pointer; font-size:16px; color:var(--stone); flex:none}
   .sheet-body{padding:8px 22px 0}
+  .photo-edit{display:flex; gap:14px; align-items:center; margin:6px 0 4px}
+  .photo-prev{position:relative; width:96px; height:72px; border-radius:12px; overflow:hidden; flex:none; display:grid; place-items:center; border:1px solid var(--line)}
+  .photo-prev .pf{font-size:30px}
+  .photo-prev img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .photo-act{display:flex; flex-direction:column; gap:6px; align-items:flex-start}
+  .photobtn{appearance:none; border:1px solid var(--herb); background:var(--herb-soft); color:var(--herb); font-family:inherit; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px; cursor:pointer}
+  .photolink{appearance:none; border:0; background:transparent; color:var(--stone); font-size:12px; cursor:pointer; text-decoration:underline; text-underline-offset:2px; padding:0}
+  .photo-msg{font-size:12px; color:var(--stone)}
   .subhd{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--stone); font-weight:600; margin:20px 0 10px}
   .ing-list{list-style:none; display:flex; flex-direction:column; gap:2px}
   .ing-list li{display:flex; justify-content:space-between; gap:14px; padding:7px 0; border-bottom:1px solid var(--line); font-size:14px}
@@ -135,7 +143,7 @@
 
   <section id="view-cart" hidden></section>
 
-  <div class="foot">Carnet d'été — ajoute tes recettes dans le fichier, dépose les photos dans <code>/images</code>.</div>
+  <div class="foot">Carnet d'été — ajoute tes recettes dans le fichier, dépose les photos dans <code>/images</code>.<br>Photos : <a href="https://commons.wikimedia.org/wiki/Category:Food" style="color:var(--herb)">Wikimedia Commons</a> (licences Creative Commons).</div>
 </div>
 
 <div class="sheet-back" id="sheet-back" onclick="closeSheet()"></div>
@@ -165,14 +173,16 @@ const CONFIG = {
 const AISLE_ORDER = ["Fruits","Légumes","Herbes","Crèmerie","Boulangerie","Épicerie"];
 
 /* ---- state (en mémoire pour la session) ---- */
-const sel = new Map();      // id -> servings choisis
-const checked = new Set();  // "item__unit" cochés
+const sel = new Map();        // id -> servings choisis
+const checked = new Set();    // "item__unit" cochés
+const overrides = new Map();  // recipe_id -> URL de photo perso (depuis Supabase)
 let view = "recipes";
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
 function fmt(n){ return (Math.round(n*100)/100).toString(); }
 function qtyText(qty,unit){ if(qty===0||qty==null) return ""; return unit ? `${fmt(qty)} ${unit}` : `${fmt(qty)}`; }
+function imageFor(r){ return overrides.get(r.id) || r.image; }  // photo perso prioritaire
 /* teinte gourmande par recette (utilisée tant qu'il n'y a pas de photo) */
 function tintFor(r){
   const map={
@@ -201,7 +211,7 @@ function renderGrid(){
     card.innerHTML = `
       <div class="thumb" onclick="openSheet('${r.id}')">
         <div class="fallback" style="background:${tintFor(r)}">${r.emoji}</div>
-        <img alt="" src="${r.image}" onerror="this.remove()">
+        <img alt="" src="${imageFor(r)}" onerror="this.remove()">
       </div>
       <div class="meta">
         <div class="rname" onclick="openSheet('${r.id}')">${r.name}</div>
@@ -249,7 +259,23 @@ function openSheet(id){
   $("#d-name").textContent = r.name;
   const ing = r.ingredients.map(x=>`<li><span>${x.item}</span><span class="q">${qtyText(x.qty,x.unit)||"—"}</span></li>`).join("");
   const steps = r.steps.map(s=>`<li>${s}</li>`).join("");
+  const hasOverride = overrides.has(r.id);
+  const photo = `
+    <div class="photo-edit">
+      <div class="photo-prev" style="background:${tintFor(r)}">
+        <span class="pf">${r.emoji}</span>
+        <img alt="" src="${imageFor(r)}" onerror="this.remove()">
+      </div>
+      <div class="photo-act">
+        <label class="photobtn" id="pb-${r.id}">📷 Changer la photo
+          <input type="file" accept="image/*" hidden onchange="onPhotoPick('${r.id}', this)">
+        </label>
+        ${hasOverride ? `<button class="photolink" onclick="removePhoto('${r.id}')">Remettre par défaut</button>` : ``}
+        <div class="photo-msg" id="pm-${r.id}"></div>
+      </div>
+    </div>`;
   $("#d-body").innerHTML = `
+    ${photo}
     <div class="subhd">Ingrédients · ${r.servings} pers.</div>
     <ul class="ing-list">${ing}</ul>
     <div class="subhd">Préparation</div>
@@ -342,19 +368,55 @@ async function dbServings(id){ if(!SHARED||!cart.has(id))return; try{ await supa
 async function dbCheck(key){ if(!SHARED)return; try{ await supa.from("checks").upsert({list_id:LIST,item_key:key}); }catch(e){console.warn(e);} }
 async function dbUncheck(key){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST).eq("item_key",key); }catch(e){console.warn(e);} }
 async function dbClearChecks(){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST); }catch(e){console.warn(e);} }
+async function dbSetImage(id,url){ if(!SHARED)return; try{ await supa.from("recipe_images").upsert({recipe_id:id,url,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
+async function dbDelImage(id){ if(!SHARED)return; try{ await supa.from("recipe_images").delete().eq("recipe_id",id); }catch(e){console.warn(e);} }
+
+/* ---- changer la photo d'une recette (upload Supabase Storage) ---- */
+function pmsg(id,t){ const e=$("#pm-"+id); if(e) e.textContent=t; }
+async function resizeImage(file, max=1200, q=0.85){
+  const img = await new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=URL.createObjectURL(file); });
+  let w=img.width, h=img.height;
+  if(Math.max(w,h)>max){ const s=max/Math.max(w,h); w=Math.round(w*s); h=Math.round(h*s); }
+  const cv=document.createElement("canvas"); cv.width=w; cv.height=h;
+  cv.getContext("2d").drawImage(img,0,0,w,h);
+  return await new Promise(r=>cv.toBlob(r,"image/jpeg",q));
+}
+async function onPhotoPick(id, input){
+  const file = input.files && input.files[0]; if(!file) return;
+  if(!SHARED){ pmsg(id,"Active la synchro Supabase pour changer les photos."); return; }
+  pmsg(id,"Envoi de la photo…");
+  try{
+    const blob = await resizeImage(file);
+    const path = `${id}-${Date.now()}.jpg`;
+    const up = await supa.storage.from("photos").upload(path, blob, { contentType:"image/jpeg", upsert:false });
+    if(up.error) throw up.error;
+    const url = supa.storage.from("photos").getPublicUrl(path).data.publicUrl;
+    overrides.set(id, url);
+    await dbSetImage(id, url);
+    renderGrid(); openSheet(id); pmsg(id,"Photo mise à jour ✓");
+  }catch(e){ console.warn(e); pmsg(id,"Échec : "+(e.message||e)); }
+}
+async function removePhoto(id){
+  overrides.delete(id);
+  await dbDelImage(id);
+  renderGrid(); openSheet(id);
+}
 
 let pulling=false;
 async function pullState(){
   if(!SHARED || pulling) return; pulling=true;
   try{
-    const [c,k] = await Promise.all([
+    const [c,k,im] = await Promise.all([
       supa.from("cart").select("recipe_id,servings").eq("list_id",LIST),
-      supa.from("checks").select("item_key").eq("list_id",LIST)
+      supa.from("checks").select("item_key").eq("list_id",LIST),
+      supa.from("recipe_images").select("recipe_id,url")
     ]);
     cart.clear();
     (c.data||[]).forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); });
     checked.clear();
     (k.data||[]).forEach(r=>checked.add(r.item_key));
+    overrides.clear();
+    (im.data||[]).forEach(r=>overrides.set(r.recipe_id, r.url));
     renderGrid(); updateCount(); if(view==="cart") renderCart();
   }catch(e){ console.warn(e); }
   pulling=false;
@@ -366,6 +428,7 @@ if(SHARED){
   supa.channel("carnet-"+LIST)
     .on("postgres_changes",{event:"*",schema:"public",table:"cart"},   pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"checks"}, pullState)
+    .on("postgres_changes",{event:"*",schema:"public",table:"recipe_images"}, pullState)
     .subscribe();
 }</script>
 </body>
