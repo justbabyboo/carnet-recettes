@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carnet d'été</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBFAF6; --ink:#1A2B22; --herb:#2F6B4F; --zest:#E8B23A;
+    --stone:#6B7268; --line:#E4E2D8; --card:#FFFFFF;
+    --herb-soft:#EAF1EC; --zest-soft:#FBF2DC;
+    --shadow:0 1px 2px rgba(26,43,34,.04), 0 8px 24px rgba(26,43,34,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif; line-height:1.5;
+    -webkit-font-smoothing:antialiased; padding-bottom:96px;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 18px}
+
+  /* Masthead */
+  header{padding:28px 0 18px; border-bottom:1px solid var(--line); margin-bottom:22px}
+  .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--stone); font-weight:600}
+  h1{font-family:"Fraunces",serif; font-weight:600; font-size:clamp(34px,9vw,52px); line-height:.98; letter-spacing:-.01em; margin:6px 0 8px}
+  h1 em{font-style:italic; color:var(--herb)}
+  .lede{color:var(--stone); font-size:14px; max-width:46ch}
+
+  /* Tabs */
+  .tabs{position:sticky; top:0; z-index:20; background:linear-gradient(var(--paper) 70%, rgba(251,250,246,0)); padding:10px 0 12px; display:flex; gap:8px}
+  .tab{appearance:none; border:1px solid var(--line); background:var(--card); color:var(--ink); font-family:inherit; font-size:14px; font-weight:500; padding:9px 16px; border-radius:999px; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:.18s ease}
+  .tab[aria-selected="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .tab .count{font-size:12px; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:var(--zest); color:var(--ink); display:inline-flex; align-items:center; justify-content:center; font-weight:600}
+  .tab[aria-selected="true"] .count{background:var(--zest)}
+
+  /* Recipe grid */
+  .grid{display:grid; grid-template-columns:1fr; gap:16px}
+  @media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; opacity:0; transform:translateY(8px); animation:rise .5s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes rise{to{opacity:1; transform:none}}
+  .thumb{position:relative; aspect-ratio:16/10; cursor:pointer; overflow:hidden}
+  .thumb .fallback{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:52px}
+  .thumb img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .5s ease}
+  .card:hover .thumb img{transform:scale(1.04)}
+  .meta{padding:14px 16px 16px; display:flex; flex-direction:column; gap:10px; flex:1}
+  .rname{font-family:"Fraunces",serif; font-size:21px; font-weight:600; letter-spacing:-.01em; cursor:pointer; line-height:1.1}
+  .tags{display:flex; flex-wrap:wrap; gap:6px}
+  .tag{font-size:11px; color:var(--herb); background:var(--herb-soft); padding:3px 9px; border-radius:999px; font-weight:500; letter-spacing:.02em}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto}
+  .stepper{display:inline-flex; align-items:center; gap:2px; border:1px solid var(--line); border-radius:999px; padding:3px}
+  .stepper button{appearance:none; border:0; background:transparent; width:26px; height:26px; border-radius:999px; cursor:pointer; font-size:17px; color:var(--ink); line-height:1; display:grid; place-items:center}
+  .stepper button:hover{background:var(--herb-soft)}
+  .stepper .val{min-width:54px; text-align:center; font-size:12px; color:var(--stone)}
+  .add{appearance:none; border:1px solid var(--herb); background:var(--card); color:var(--herb); font-family:inherit; font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:.15s ease; white-space:nowrap}
+  .add:hover{background:var(--herb-soft)}
+  .add.in{background:var(--herb); color:#fff; border-color:var(--herb)}
+  .add .ic{font-size:14px; line-height:1}
+
+  /* Detail panel */
+  .sheet-back{position:fixed; inset:0; background:rgba(26,43,34,.32); opacity:0; pointer-events:none; transition:.25s ease; z-index:40}
+  .sheet-back.open{opacity:1; pointer-events:auto}
+  .sheet{position:fixed; left:0; right:0; bottom:0; max-height:88vh; background:var(--paper); border-radius:22px 22px 0 0; transform:translateY(100%); transition:transform .32s cubic-bezier(.2,.7,.3,1); z-index:41; overflow:auto; padding-bottom:30px}
+  .sheet.open{transform:none}
+  @media(min-width:620px){.sheet{max-width:560px; margin:0 auto; border-radius:22px; bottom:auto; top:50%; transform:translate(0,-50%) scale(.96); opacity:0} .sheet.open{transform:translateY(-50%); opacity:1}}
+  .handle{width:38px; height:4px; background:var(--line); border-radius:99px; margin:10px auto 0}
+  .sheet-hd{padding:14px 22px 4px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+  .sheet-hd h2{font-family:"Fraunces",serif; font-size:26px; font-weight:600; letter-spacing:-.01em; line-height:1.05}
+  .close{appearance:none; border:1px solid var(--line); background:var(--card); width:34px; height:34px; border-radius:999px; cursor:pointer; font-size:16px; color:var(--stone); flex:none}
+  .sheet-body{padding:8px 22px 0}
+  .subhd{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--stone); font-weight:600; margin:20px 0 10px}
+  .ing-list{list-style:none; display:flex; flex-direction:column; gap:2px}
+  .ing-list li{display:flex; justify-content:space-between; gap:14px; padding:7px 0; border-bottom:1px solid var(--line); font-size:14px}
+  .ing-list li .q{color:var(--stone); white-space:nowrap}
+  .steps{list-style:none; counter-reset:s; display:flex; flex-direction:column; gap:14px; margin-top:4px}
+  .steps li{display:flex; gap:13px; font-size:14px}
+  .steps li::before{counter-increment:s; content:counter(s); flex:none; width:26px; height:26px; border-radius:999px; background:var(--herb-soft); color:var(--herb); font-weight:600; font-size:13px; display:grid; place-items:center; font-family:"Fraunces",serif}
+
+  /* Shopping list */
+  .empty{text-align:center; padding:54px 20px; color:var(--stone)}
+  .empty .big{font-size:44px; margin-bottom:14px}
+  .empty p{font-size:14px; max-width:34ch; margin:0 auto}
+  .list-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:4px; flex-wrap:wrap}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:2px 0 18px}
+  .chip{font-size:12px; background:var(--card); border:1px solid var(--line); padding:5px 11px 5px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:7px}
+  .chip button{appearance:none; border:0; background:transparent; cursor:pointer; color:var(--stone); font-size:14px; line-height:1; padding:0}
+  .clearall{appearance:none; border:0; background:transparent; color:var(--stone); font-size:13px; cursor:pointer; text-decoration:underline; text-underline-offset:2px}
+  .aisle{margin-bottom:8px}
+  .aisle h3{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--herb); font-weight:600; margin:18px 0 6px}
+  .check{display:flex; align-items:center; gap:12px; padding:11px 4px; border-bottom:1px solid var(--line); cursor:pointer; user-select:none}
+  .box{flex:none; width:21px; height:21px; border:2px solid var(--line); border-radius:7px; display:grid; place-items:center; transition:.15s ease}
+  .box svg{width:13px; height:13px; opacity:0; transform:scale(.6); transition:.15s ease}
+  .check.on .box{background:var(--zest); border-color:var(--zest)}
+  .check.on .box svg{opacity:1; transform:none}
+  .check .name{font-size:14.5px; flex:1; transition:.15s ease}
+  .check .qty{font-size:13px; color:var(--stone); white-space:nowrap}
+  .check.on .name{color:var(--stone); text-decoration:line-through}
+  .progress{font-size:13px; color:var(--stone)}
+
+  .foot{margin:40px 0 8px; padding-top:18px; border-top:1px solid var(--line); font-size:12px; color:var(--stone); text-align:center}
+  [hidden]{display:none!important}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Recettes fraîches · à deux</div>
+    <h1>Carnet d'<em>été</em></h1>
+    <p class="lede">Choisis tes recettes, la liste de courses se monte toute seule — quantités additionnées, rangées par rayon.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" id="tab-r" role="tab" aria-selected="true" onclick="setView('recipes')">Recettes</button>
+    <button class="tab" id="tab-c" role="tab" aria-selected="false" onclick="setView('cart')">Courses <span class="count" id="cart-count" hidden>0</span></button>
+  </nav>
+
+  <section id="view-recipes">
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="view-cart" hidden></section>
+
+  <div class="foot">Carnet d'été — ajoute tes recettes dans le fichier, dépose les photos dans <code>/images</code>.</div>
+</div>
+
+<div class="sheet-back" id="sheet-back" onclick="closeSheet()"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true">
+  <div class="handle"></div>
+  <div class="sheet-hd"><h2 id="d-name"></h2><button class="close" onclick="closeSheet()" aria-label="Fermer">✕</button></div>
+  <div class="sheet-body" id="d-body"></div>
+</div>
+
+<script src="recipes.js"></script>
+<script>
+/* Les recettes sont chargées depuis recipes.js (window.RECIPES).
+   Pour ajouter / modifier une recette, édite recipes.js — pas ce fichier. */
+const RECIPES = (window.RECIPES || []);
+
+const AISLE_ORDER = ["Fruits","Légumes","Herbes","Crèmerie","Boulangerie","Épicerie"];
+
+/* ---- state (en mémoire pour la session) ---- */
+const sel = new Map();      // id -> servings choisis
+const checked = new Set();  // "item__unit" cochés
+let view = "recipes";
+
+/* ---- helpers ---- */
+const $ = s => document.querySelector(s);
+function fmt(n){ return (Math.round(n*100)/100).toString(); }
+function qtyText(qty,unit){ if(qty===0||qty==null) return ""; return unit ? `${fmt(qty)} ${unit}` : `${fmt(qty)}`; }
+
+/* ---- render recipes ---- */
+function renderGrid(){
+  const g = $("#grid"); g.innerHTML = "";
+  if(!RECIPES.length){
+    g.innerHTML = `<div class="empty" style="grid-column:1/-1"><div class="big">📖</div><p>Aucune recette chargée. Vérifie que <code>recipes.js</code> est bien à côté de <code>index.html</code>.</p></div>`;
+    return;
+  }
+  RECIPES.forEach((r,i)=>{
+    if(!sel.has(r.id)) sel.set(r.id, r.servings);
+    const inCart = sel.get(r.id)!==null && cartHas(r.id);
+    const card = document.createElement("article");
+    card.className="card"; card.style.animationDelay=(i*60)+"ms";
+    card.innerHTML = `
+      <div class="thumb" onclick="openSheet('${r.id}')">
+        <div class="fallback" style="background:linear-gradient(135deg,var(--herb-soft),var(--zest-soft))">${r.emoji}</div>
+        <img alt="" src="${r.image}" onerror="this.remove()">
+      </div>
+      <div class="meta">
+        <div class="rname" onclick="openSheet('${r.id}')">${r.name}</div>
+        <div class="tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="row">
+          <div class="stepper">
+            <button onclick="bump('${r.id}',-1)" aria-label="moins">–</button>
+            <span class="val" id="sv-${r.id}">${sel.get(r.id)} pers.</span>
+            <button onclick="bump('${r.id}',1)" aria-label="plus">+</button>
+          </div>
+          <button class="add ${cartHas(r.id)?'in':''}" id="add-${r.id}" onclick="toggleCart('${r.id}')">
+            <span class="ic">${cartHas(r.id)?'✓':'+'}</span>${cartHas(r.id)?'Ajouté':'Courses'}
+          </button>
+        </div>
+      </div>`;
+    g.appendChild(card);
+  });
+}
+
+const cart = new Set();
+function cartHas(id){ return cart.has(id); }
+function toggleCart(id){
+  cart.has(id) ? cart.delete(id) : cart.add(id);
+  const b = $("#add-"+id);
+  b.classList.toggle("in", cart.has(id));
+  b.innerHTML = `<span class="ic">${cart.has(id)?'✓':'+'}</span>${cart.has(id)?'Ajouté':'Courses'}`;
+  updateCount(); if(view==="cart") renderCart();
+}
+function bump(id,d){
+  const v = Math.max(1, (sel.get(id)||1)+d);
+  sel.set(id, v);
+  $("#sv-"+id).textContent = v+" pers.";
+  if(view==="cart") renderCart();
+}
+function updateCount(){
+  const c = cart.size, el=$("#cart-count");
+  el.textContent = c; el.hidden = c===0;
+}
+
+/* ---- detail sheet ---- */
+function openSheet(id){
+  const r = RECIPES.find(x=>x.id===id);
+  $("#d-name").textContent = r.name;
+  const ing = r.ingredients.map(x=>`<li><span>${x.item}</span><span class="q">${qtyText(x.qty,x.unit)||"—"}</span></li>`).join("");
+  const steps = r.steps.map(s=>`<li>${s}</li>`).join("");
+  $("#d-body").innerHTML = `
+    <div class="subhd">Ingrédients · ${r.servings} pers.</div>
+    <ul class="ing-list">${ing}</ul>
+    <div class="subhd">Préparation</div>
+    <ol class="steps">${steps}</ol>`;
+  $("#sheet").classList.add("open"); $("#sheet-back").classList.add("open");
+}
+function closeSheet(){ $("#sheet").classList.remove("open"); $("#sheet-back").classList.remove("open"); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); });
+
+/* ---- shopping list (auto) ---- */
+function buildList(){
+  const map = new Map();
+  cart.forEach(id=>{
+    const r = RECIPES.find(x=>x.id===id);
+    const ratio = (sel.get(id)||r.servings)/r.servings;
+    r.ingredients.forEach(ing=>{
+      const key = ing.item.toLowerCase()+"__"+ing.unit;
+      if(!map.has(key)) map.set(key,{item:ing.item, unit:ing.unit, cat:ing.cat, qty:0});
+      map.get(key).qty += ing.qty*ratio;
+    });
+  });
+  const byAisle = {};
+  [...map.entries()].forEach(([key,v])=>{ (byAisle[v.cat]=byAisle[v.cat]||[]).push({key,...v}); });
+  return byAisle;
+}
+function renderCart(){
+  const host = $("#view-cart");
+  if(cart.size===0){
+    host.innerHTML = `<div class="empty"><div class="big">🧺</div><p>Aucune recette sélectionnée. Ajoute des recettes et ta liste de courses se construit ici.</p></div>`;
+    return;
+  }
+  const byAisle = buildList();
+  const total = Object.values(byAisle).reduce((n,a)=>n+a.length,0);
+  const done = [...checked].filter(k=>{
+    return Object.values(byAisle).some(a=>a.some(i=>i.key===k));
+  }).length;
+  const chips = [...cart].map(id=>{
+    const r=RECIPES.find(x=>x.id===id);
+    return `<span class="chip">${r.emoji} ${r.name}<button onclick="toggleCart('${id}')" aria-label="retirer">✕</button></span>`;
+  }).join("");
+  let html = `<div class="list-head">
+      <div><div class="subhd" style="margin:0 0 4px">Liste de courses</div><div class="progress">${done}/${total} cochés</div></div>
+      <button class="clearall" onclick="clearChecks()">Tout décocher</button>
+    </div>
+    <div class="chips">${chips}</div>`;
+  AISLE_ORDER.filter(a=>byAisle[a]).forEach(a=>{
+    const items = byAisle[a].sort((x,y)=>x.item.localeCompare(y.item));
+    html += `<div class="aisle"><h3>${a}</h3>`;
+    items.forEach(i=>{
+      const on = checked.has(i.key);
+      html += `<div class="check ${on?'on':''}" onclick="toggleCheck('${i.key}')">
+        <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2B22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span>
+        <span class="name">${i.item}</span>
+        <span class="qty">${qtyText(i.qty,i.unit)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  host.innerHTML = html;
+}
+function toggleCheck(key){ checked.has(key)?checked.delete(key):checked.add(key); renderCart(); }
+function clearChecks(){ checked.clear(); renderCart(); }
+
+/* ---- views ---- */
+function setView(v){
+  view=v;
+  $("#tab-r").setAttribute("aria-selected", v==="recipes");
+  $("#tab-c").setAttribute("aria-selected", v==="cart");
+  $("#view-recipes").hidden = v!=="recipes";
+  $("#view-cart").hidden = v!=="cart";
+  if(v==="cart") renderCart();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+renderGrid(); updateCount();
+</script>
+</body>
+</html>
