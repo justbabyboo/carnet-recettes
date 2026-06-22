@@ -295,5 +295,32 @@ window.RECIPES = [
       "Mets tous les ingrédients dans un mixeur, puis mixe jusqu'à obtenir une crème lisse.",
       "Sers à l'apéro avec un filet d'huile d'olive et des graines de sésame. Idéal avec des pitas, du pain grillé ou des bâtonnets de crudités."
     ]
+  },
+  {
+    id:"salade-ete-croquante", name:"La salade qui sent l'été", emoji:"🥗",
+    image:"images/salade-ete-croquante.jpg", servings:6, temps:20, tags:["végé","salade","sans cuisson"],
+    ingredients:[
+      {item:"radis", qty:1, unit:"botte", cat:"Légumes"},
+      {item:"poivron rouge", qty:200, unit:"g", cat:"Légumes"},
+      {item:"poivron jaune", qty:200, unit:"g", cat:"Légumes"},
+      {item:"poivron vert", qty:200, unit:"g", cat:"Légumes"},
+      {item:"tomates cerises", qty:200, unit:"g", cat:"Légumes"},
+      {item:"concombre", qty:200, unit:"g", cat:"Légumes"},
+      {item:"échalote", qty:1, unit:"", cat:"Légumes"},
+      {item:"feta", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"persil plat", qty:0, unit:"", cat:"Herbes"},
+      {item:"ciboulette", qty:0, unit:"", cat:"Herbes"},
+      {item:"menthe fraîche", qty:0, unit:"", cat:"Herbes"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Coupe tous les légumes en tout petits dés : radis, poivrons, tomates cerises, concombre et échalote. C'est le secret d'une salade bien croquante.",
+      "Cisèle finement les herbes (persil, ciboulette, menthe) et ajoute-les aux légumes.",
+      "Émiette la feta par-dessus.",
+      "Assaisonne d'huile d'olive, de jus de citron, de sel et de poivre. Mélange et ajuste le reste à l'œil. Sers bien frais."
+    ]
   }
 ];
