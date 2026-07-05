@@ -320,5 +320,28 @@ window.RECIPES = [
       "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
       "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
     ]
+  },
+  {
+    id:"salade-orzo", name:"Salade d'orzo crémeuse (concombre & menthe)", emoji:"🥗",
+    image:"images/salade-orzo.jpg", servings:4, temps:25, tags:["végé","salade","pâtes"],
+    ingredients:[
+      {item:"orzo (risoni / pâtes-riz)", qty:250, unit:"g", cat:"Épicerie"},
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"menthe fraîche", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"yaourt grec", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"feta", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Cuis l'orzo en eau bouillante salée selon le paquet, égoutte et rince à l'eau froide pour le refroidir. Réserve.",
+      "Coupe le concombre en petits dés, émince finement l'oignon rouge et cisèle la menthe.",
+      "Dans un saladier, mélange l'orzo froid avec le concombre, l'oignon rouge et la menthe.",
+      "Ajoute le yaourt grec, le jus de citron, un filet d'huile d'olive, la fleur de sel et le poivre. Mélange bien pour tout enrober.",
+      "Incorpore la moitié de la feta émiettée, puis parsème le reste sur le dessus. Termine par quelques feuilles de menthe et un tour de poivre. Sers frais."
+    ]
   }
 ];
