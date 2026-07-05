@@ -342,5 +342,30 @@ window.RECIPES = [
       "Ajoute les glaçons progressivement pour garder le mélange frais et obtenir une texture crémeuse. Ajuste avec plus de citron, tahini ou sel si besoin.",
       "Sers avec une garniture de sumac, cumin et persil, et un filet d'huile d'olive."
     ]
+  },
+  {
+    id:"salade-orzo", name:"Salade d'orzo au tzatziki", emoji:"🥗",
+    image:"images/salade-orzo.jpg", servings:4, temps:25, tags:["végé","salade","pâtes","grec"],
+    ingredients:[
+      {item:"orzo (risoni / pâtes-riz)", qty:400, unit:"g", cat:"Épicerie"},
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"oignon rouge", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"menthe fraîche", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"yaourt grec", qty:250, unit:"g", cat:"Crèmerie"},
+      {item:"feta", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"citron", qty:2, unit:"", cat:"Fruits"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"zaatar", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Cuis l'orzo en eau bouillante salée selon le paquet, égoutte et rince à l'eau froide pour le refroidir. Réserve.",
+      "Coupe le concombre en petits dés, émince finement l'oignon rouge, râpe ou hache l'ail et cisèle la menthe.",
+      "Dans un saladier, mélange l'orzo froid avec le concombre, l'oignon rouge, l'ail et la menthe.",
+      "Ajoute le yaourt grec, le jus de citron, un filet d'huile d'olive, la fleur de sel, le poivre et le zaatar. Mélange bien pour tout enrober.",
+      "Incorpore la moitié de la feta émiettée, puis parsème le reste sur le dessus. Termine par un peu de zaatar, quelques feuilles de menthe et un tour de poivre. Sers frais."
+    ]
   }
 ];
