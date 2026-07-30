@@ -613,5 +613,58 @@ window.RECIPES = [
       "Vinaigrette : mélange le yaourt, la moutarde fine, la moutarde en grains, le sirop d'érable, le vinaigre de cidre, le sel et le poivre.",
       "Assemble tous les ingrédients de la salade dans un grand saladier, ajoute les cranberries et les amandes, puis assaisonne de vinaigrette."
     ]
+  },
+  {
+    id:"rillettes-pleurotes", name:"Rillettes de pleurotes", emoji:"🍄",
+    image:"images/rillettes-pleurotes.jpg", servings:4, temps:30, tags:["vegan","poêle"],
+    ingredients:[
+      {item:"pleurotes", qty:150, unit:"g", cat:"Légumes"},
+      {item:"échalotes", qty:3, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"lentilles vertes", qty:50, unit:"g", cat:"Épicerie"},
+      {item:"noix", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"levure maltée", qty:2, unit:"c.s.", cat:"Épicerie"},
+      {item:"sauce soja", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"cognac", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile de noisette", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"piment d'Espelette", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"cornichons", qty:0, unit:"", cat:"Épicerie"},
+      {item:"pain (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Cuis les lentilles à l'eau bouillante jusqu'à ce qu'elles soient tendres, égoutte et réserve.",
+      "Émince finement les échalotes en lanières et effiloche très finement les pleurotes à la main dans la longueur.",
+      "Chauffe l'huile d'olive dans une poêle et fais revenir 15 min les échalotes et les pleurotes avec l'ail pressé. Quand les pleurotes dorent, ajoute le cognac, laisse évaporer et retire du feu.",
+      "Mets tous les ingrédients SAUF le mélange de pleurotes dans un mixeur et mixe jusqu'à une texture assez lisse (ajoute un peu d'eau si besoin).",
+      "Ajoute les pleurotes et mixe à peine (1-2 à-coups) pour les incorporer sans perdre le côté filandreux.",
+      "Transvase en bocal et laisse reposer au frais au moins 30 min. Sers sur des tranches de pain grillé avec des cornichons."
+    ]
+  },
+  {
+    id:"oeufs-cocotte-butternut", name:"Œufs cocotte, butternut & épinards", emoji:"🥚",
+    image:"images/oeufs-cocotte-butternut.jpg", servings:4, temps:35, tags:["végé","four"],
+    ingredients:[
+      {item:"butternut", qty:280, unit:"g", cat:"Légumes"},
+      {item:"épinards", qty:200, unit:"g", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"œufs", qty:4, unit:"", cat:"Crèmerie"},
+      {item:"crème liquide", qty:120, unit:"ml", cat:"Crèmerie"},
+      {item:"parmesan", qty:4, unit:"c.c.", cat:"Crèmerie"},
+      {item:"beurre", qty:0, unit:"", cat:"Crèmerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+      {item:"pain (mouillettes)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Épluche et coupe la butternut en dés, puis cuis-la à la vapeur jusqu'à ce qu'elle soit tendre.",
+      "Préchauffe le four à 180°C (th. 6). Remplis d'eau à mi-hauteur un plat capable d'accueillir 4 ramequins et enfourne-le.",
+      "Rince et hache grossièrement les épinards, presse l'ail. Fais-les revenir à la poêle avec l'huile jusqu'à ce que les épinards réduisent.",
+      "Répartis la butternut dans les ramequins et écrase-la grossièrement, saupoudre de noix muscade. Ajoute les épinards et la crème, mélange rapidement.",
+      "Casse un œuf dans chaque ramequin, saupoudre de parmesan, sale et poivre. Dépose les ramequins dans le plat au four et cuis 20 min.",
+      "Déguste aussitôt avec des mouillettes de pain grillé et beurré."
+    ]
   }
 ];
