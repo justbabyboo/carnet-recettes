@@ -303,7 +303,7 @@ window.RECIPES = [
       {item:"oignon rouge", qty:1, unit:"", cat:"Légumes"},
       {item:"graines de grenade", qty:1, unit:"", cat:"Fruits"},
       {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
-      {item:"coriandre fraîche (ou menthe)", qty:0, unit:"", cat:"Herbes"},
+      {item:"persil plat (ou menthe)", qty:0, unit:"", cat:"Herbes"},
       {item:"yaourt grec", qty:200, unit:"g", cat:"Crèmerie"},
       {item:"citron", qty:1, unit:"", cat:"Fruits"},
       {item:"paprika fumé", qty:0, unit:"", cat:"Épicerie"},
@@ -318,7 +318,7 @@ window.RECIPES = [
       "Sauce : mélange le yaourt grec, l'ail écrasé, le jus de citron, du sel et du poivre.",
       "Prépare les crudités : émince la laitue, le concombre, la tomate et l'oignon rouge ; râpe les carottes ; tranche l'avocat.",
       "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
-      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
+      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de persil. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
     ]
   },
   {
@@ -366,6 +366,453 @@ window.RECIPES = [
       "Dans un saladier, mélange l'orzo froid avec le concombre, l'oignon rouge, l'ail et la menthe.",
       "Ajoute le yaourt grec, le jus de citron, un filet d'huile d'olive, la fleur de sel, le poivre et le zaatar. Mélange bien pour tout enrober.",
       "Incorpore la moitié de la feta émiettée, puis parsème le reste sur le dessus. Termine par un peu de zaatar, quelques feuilles de menthe et un tour de poivre. Sers frais."
+    ]
+  },
+  {
+    id:"gyros-pleurotes", name:"Gyros de pleurotes", emoji:"🥙",
+    image:"images/gyros-pleurotes.jpg", servings:4, temps:80, tags:["végé","four","grec"],
+    ingredients:[
+      {item:"pleurotes", qty:200, unit:"g", cat:"Légumes"},
+      {item:"champignons de Paris", qty:100, unit:"g", cat:"Légumes"},
+      {item:"oignon rouge", qty:1.5, unit:"", cat:"Légumes"},
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"tomates", qty:2, unit:"", cat:"Légumes"},
+      {item:"salade (laitue)", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"ail", qty:4, unit:"gousses", cat:"Légumes"},
+      {item:"aneth", qty:0.5, unit:"bouquet", cat:"Herbes"},
+      {item:"menthe fraîche", qty:10, unit:"feuilles", cat:"Herbes"},
+      {item:"citron", qty:2, unit:"", cat:"Fruits"},
+      {item:"yaourt grec", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"pitas", qty:4, unit:"", cat:"Boulangerie"},
+      {item:"frites (surgelées)", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sauce soja", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"origan séché", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"paprika fumé", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"cumin", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 180°C (th. 6).",
+      "Marinade : épluche et presse 3 gousses d'ail, puis mélange dans un saladier avec la sauce soja, le jus d'½ citron, l'origan, le paprika fumé, le cumin, 1 c.s. d'eau et 5 c.s. d'huile d'olive.",
+      "Légumes rôtis : effiloche les pleurotes en lanières à la main, coupe les champignons en quatre, émince l'oignon rouge. Mets champignons et oignon dans la marinade et mélange bien.",
+      "Étale les légumes sur une plaque et enfourne à mi-hauteur 20 min.",
+      "Tzatziki : râpe le concombre et presse-le pour retirer l'eau. Presse 1 grosse gousse d'ail, hache l'aneth et la menthe. Mélange avec le yaourt grec, 2 c.s. de jus de citron, 3 c.s. d'huile d'olive et une pincée de fleur de sel. Laisse reposer au frais au moins 30 min.",
+      "Assemble : garnis chaque pita de salade, tomates et oignon rouge, ajoute les pleurotes rôties et quelques cuillerées de tzatziki. Sers avec des frites."
+    ]
+  },
+  {
+    id:"nuggets-chou-fleur", name:"Nuggets de chou-fleur façon fish & chips", emoji:"🍤",
+    image:"images/nuggets-chou-fleur.jpg", servings:4, temps:75, tags:["vegan","friture"],
+    ingredients:[
+      {item:"chou-fleur", qty:500, unit:"g", cat:"Légumes"},
+      {item:"pommes de terre", qty:500, unit:"g", cat:"Légumes"},
+      {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"ciboulette", qty:0, unit:"", cat:"Herbes"},
+      {item:"yaourt", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"lait", qty:50, unit:"ml", cat:"Crèmerie"},
+      {item:"farine", qty:200, unit:"g", cat:"Épicerie"},
+      {item:"bière", qty:250, unit:"ml", cat:"Épicerie"},
+      {item:"cornichons", qty:4, unit:"", cat:"Épicerie"},
+      {item:"câpres", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"moutarde", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"feuille de nori", qty:1, unit:"", cat:"Épicerie"},
+      {item:"miso blanc", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"bicarbonate de soude", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"paprika fumé", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de friture", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 200°C (th. 6-7). Coupe les pommes de terre en deux, dépose-les sur une plaque, arrose d'huile d'olive et de sel, mélange et enfourne 30 min.",
+      "Sauce : hache l'oignon rouge, les cornichons et les câpres (au mixeur ou au couteau), hache la ciboulette. Mélange le tout avec la moutarde et le yaourt.",
+      "Nuggets : détaille le chou-fleur en fleurettes et cuis-les 10 min à la vapeur. Réserve. Dans un saladier, mélange la farine, le bicarbonate, l'ail en poudre, le paprika, le sel et la feuille de nori émiettée. Ajoute le miso, la bière et le lait, puis mélange jusqu'à une pâte lisse.",
+      "Chauffe l'huile de friture. Trempe les fleurettes dans la pâte à beignets, plonge-les dans l'huile et laisse dorer sur toutes les faces.",
+      "Sers les nuggets avec les pommes de terre au four et la sauce."
+    ]
+  },
+  {
+    id:"gratin-haricots-mozza", name:"Gratin de haricots aux tomates & mozzarella", emoji:"🧀",
+    image:"images/gratin-haricots-mozza.jpg", servings:4, temps:40, tags:["végé","gratin","four"],
+    ingredients:[
+      {item:"tomates", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"basilic frais", qty:1, unit:"poignée", cat:"Herbes"},
+      {item:"mozzarella râpée", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"haricots blancs cuits", qty:400, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:70, unit:"g", cat:"Épicerie"},
+      {item:"paprika doux", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"origan séché", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"thym", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"pain (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Épluche et hache l'ail, détaille les tomates en dés. Préchauffe le four à 210°C (th. 7).",
+      "Dans une poêle (idéalement qui va au four), fais revenir l'ail et les tomates dans 3 c.s. d'huile d'olive pendant 5 min.",
+      "Ajoute le concentré de tomate, les haricots blancs, le paprika, l'origan et le thym ; poursuis 5 min en écrasant un peu les haricots à la spatule. Ajoute le basilic, sale, poivre et mélange.",
+      "Si besoin transvase dans un plat à four, puis répartis la mozzarella râpée par-dessus.",
+      "Enfourne 15 min ; si la mozzarella n'est pas assez gratinée, passe sous le gril quelques minutes. Sers avec des tranches de pain grillées."
+    ]
+  },
+  {
+    id:"caviar-aubergines-tahini", name:"Caviar d'aubergines au tahini", emoji:"🍆",
+    image:"images/caviar-aubergines-tahini.jpg", servings:4, temps:60, tags:["vegan","four","sans cuisson"],
+    ingredients:[
+      {item:"aubergines", qty:2, unit:"", cat:"Légumes"},
+      {item:"oignon nouveau", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"persil plat", qty:1, unit:"botte", cat:"Herbes"},
+      {item:"tahini", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 200°C (th. 6-7). Lave les aubergines et pique la peau à la fourchette.",
+      "Enfourne-les sur une plaque 50 min. En fin de cuisson, tu peux allumer le gril pour faire griller la peau quelques minutes.",
+      "Épluche les aubergines et mets la chair dans un mixeur avec l'oignon nouveau, l'ail, 2 c.s. de jus de citron, 4 c.s. d'huile d'olive, le tahini, le cumin, le persil et du sel. Mixe jusqu'à une consistance lisse et légèrement mousseuse. Ajuste l'assaisonnement.",
+      "Laisse reposer au moins 1 h au frais. Sers avec des pitas, du pain ou des crudités (délicieux aussi en sandwich)."
+    ]
+  },
+  {
+    id:"chou-fleur-sesame", name:"Chou-fleur caramélisé au sésame", emoji:"🥦",
+    image:"images/chou-fleur-sesame.jpg", servings:4, temps:40, tags:["vegan","four"],
+    ingredients:[
+      {item:"chou-fleur (~700 g)", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"gingembre frais", qty:1, unit:"morceau", cat:"Légumes"},
+      {item:"oignon nouveau", qty:1, unit:"", cat:"Légumes"},
+      {item:"boisson végétale", qty:190, unit:"ml", cat:"Épicerie"},
+      {item:"farine", qty:120, unit:"g", cat:"Épicerie"},
+      {item:"fécule de maïs", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"sauce soja (tamari)", qty:6, unit:"c.s.", cat:"Épicerie"},
+      {item:"sirop d'érable", qty:6, unit:"c.s.", cat:"Épicerie"},
+      {item:"vinaigre de riz", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile de sésame", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sauce sriracha", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"graines de sésame", qty:0, unit:"", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"riz (pour servir)", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 220°C (th. 7-8) et casse le chou-fleur en fleurettes.",
+      "Pâte : mélange dans un bol la farine, 40 g de fécule de maïs, le sel, 2 c.c. de graines de sésame, l'ail en poudre et la boisson végétale. Trempe les fleurettes dedans, étale-les sur une plaque et enfourne à mi-hauteur 20 min.",
+      "Sauce : mixe l'ail et le gingembre en pâte. Dans un wok chaud, verse la sauce soja, le sirop d'érable, le vinaigre de riz, l'huile de sésame, la sriracha et la pâte ail-gingembre. Porte à ébullition puis mijote 5 min.",
+      "Délaye 2 c.s. de fécule de maïs dans 100 ml d'eau froide, verse dans le wok et mélange : la sauce épaissit en ~5 min jusqu'à devenir épaisse et collante.",
+      "Transfère aussitôt le chou-fleur dans le wok et enrobe bien chaque morceau. Sers avec du riz, des graines de sésame et des rondelles d'oignon nouveau."
+    ]
+  },
+  {
+    id:"aubergines-ottomane", name:"Aubergines farcies à l'ottomane", emoji:"🍆",
+    image:"images/aubergines-ottomane.jpg", servings:4, temps:105, tags:["vegan","four","grec"],
+    ingredients:[
+      {item:"aubergines", qty:4, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"tomates concassées en conserve", qty:300, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:140, unit:"g", cat:"Épicerie"},
+      {item:"cannelle en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"origan séché", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Lave les aubergines et fends-les dans la longueur au couteau, sans les couper en deux ni retirer le pédoncule.",
+      "Chauffe 8 c.s. d'huile d'olive dans une grande poêle, dépose les aubergines, couvre et fais-les frire 20 min en les tournant : elles doivent devenir molles et la chair commencer à se détacher.",
+      "Pendant ce temps, émince les oignons en fines lamelles et hache grossièrement l'ail.",
+      "Fais-les revenir 10 min dans une casserole avec 3 c.s. d'huile d'olive. Ajoute le concentré de tomate, la cannelle, l'origan et le laurier, laisse revenir quelques minutes, puis ajoute les tomates concassées et 3 c.s. d'eau. Sale et laisse mijoter à petits bouillons au moins 10 min.",
+      "Préchauffe le four à 180°C (th. 6). Dépose les aubergines dans un plat.",
+      "Avec une fourchette, écrase la chair par la fente (sans percer la peau) et farcis d'abord de sauce tomate ; répartis le reste de sauce autour.",
+      "Enfourne 45 min. Laisse tiédir, voire refroidir, avant de servir — encore meilleur le lendemain !"
+    ]
+  },
+  {
+    id:"moussaka-vege", name:"Moussaka végétarienne", emoji:"🥘",
+    image:"images/moussaka-vege.jpg", servings:10, temps:150, tags:["végé","gratin","grec","four"],
+    ingredients:[
+      {item:"aubergines", qty:3, unit:"", cat:"Légumes"},
+      {item:"courgettes", qty:3, unit:"", cat:"Légumes"},
+      {item:"pommes de terre", qty:6, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"champignons de Paris", qty:400, unit:"g", cat:"Légumes"},
+      {item:"persil plat", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"œuf", qty:1, unit:"", cat:"Crèmerie"},
+      {item:"lait", qty:1, unit:"l", cat:"Crèmerie"},
+      {item:"beurre", qty:80, unit:"g", cat:"Crèmerie"},
+      {item:"parmesan râpé (facultatif)", qty:50, unit:"g", cat:"Crèmerie"},
+      {item:"quinoa", qty:100, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:140, unit:"g", cat:"Épicerie"},
+      {item:"farine", qty:110, unit:"g", cat:"Épicerie"},
+      {item:"cannelle en poudre", qty:1.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"origan séché", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Légumes : préchauffe le four à 200°C (th. 6-7). Coupe aubergines, courgettes et pommes de terre épluchées en lamelles de ½ cm dans la longueur. Étale sur des plaques, badigeonne d'huile d'olive, origan, sel et poivre, puis enfourne 30 min (en plusieurs fournées si besoin).",
+      "Couche du milieu : émince et hache oignons et ail, fais-les revenir dans une sauteuse avec l'huile d'olive et le laurier ~10 min. Ajoute le concentré de tomate, laisse revenir. Mixe grossièrement les champignons et ajoute-les. Rince le quinoa, ajoute-le avec 200 ml d'eau, la cannelle, le persil haché et le sel. Fais revenir 20 min en remuant. Réserve.",
+      "Béchamel : bats l'œuf dans un bol de lait. Dans une casserole, chauffe l'huile d'olive et le beurre, ajoute la farine et cuis 5 min. Verse le mélange œuf-lait puis le reste du lait petit à petit en fouettant jusqu'à la consistance voulue. Ajoute cannelle, noix muscade, sel, poivre et le parmesan (facultatif).",
+      "Montage (plat ~35×25 cm huilé) : couche de pommes de terre → aubergines → courgettes → 1 cm de béchamel. Refais une couche de légumes, verse la préparation champignons-quinoa, finis par une couche d'aubergines puis la dernière béchamel.",
+      "Enfourne à 180°C environ 45 min à 1 h, jusqu'à ce que le dessus soit bien doré. Laisse reposer avant de couper — encore meilleure réchauffée le lendemain (et elle se congèle très bien)."
+    ]
+  },
+  {
+    id:"brocoli-saute-soja", name:"Brocoli sauté à l'ail & sauce soja", emoji:"🥦",
+    image:"images/brocoli-saute-soja.jpg", servings:4, temps:18, tags:["vegan","poêle"],
+    ingredients:[
+      {item:"brocoli", qty:1, unit:"tête", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"sauce soja", qty:4, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile de sésame", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"cacahuètes crues", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"fécule de maïs", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"flocons de piment", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de tournesol", qty:0, unit:"", cat:"Épicerie"},
+      {item:"riz (pour servir)", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Dans un bol, mélange 4 c.s. d'eau, la sauce soja, l'huile de sésame, les flocons de piment et la fécule de maïs jusqu'à ce qu'il n'y ait plus de grumeaux. Réserve.",
+      "Concasse grossièrement les cacahuètes. Réserve.",
+      "Rince le brocoli et détaille-le en petites fleurettes (tu peux éplucher le tronc et l'émincer). Épluche et presse l'ail.",
+      "Chauffe un wok à feu vif avec l'huile de tournesol, fais revenir le brocoli et l'ail 3-4 min.",
+      "Baisse à feu moyen, ajoute la sauce et les cacahuètes, poursuis 3-4 min. Sers chaud, accompagné de riz."
+    ]
+  },
+  {
+    id:"salade-brocoli-cranberries", name:"Salade de brocoli, cranberries & amandes", emoji:"🥗",
+    image:"images/salade-brocoli-cranberries.jpg", servings:4, temps:15, tags:["végé","salade","sans cuisson"],
+    ingredients:[
+      {item:"brocoli", qty:1, unit:"tête", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"yaourt grec (ou yaourt de soja)", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"amandes effilées", qty:20, unit:"g", cat:"Épicerie"},
+      {item:"cranberries séchées", qty:20, unit:"g", cat:"Épicerie"},
+      {item:"moutarde fine", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"moutarde en grains", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"vinaigre de cidre", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sirop d'érable", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Nettoie le brocoli et casse-le en petits tronçons à la main. Épluche et râpe le tronc du brocoli et la carotte. Émince finement le demi-oignon rouge.",
+      "Fais griller les amandes effilées à sec quelques minutes à la poêle jusqu'à ce qu'elles dorent.",
+      "Vinaigrette : mélange le yaourt, la moutarde fine, la moutarde en grains, le sirop d'érable, le vinaigre de cidre, le sel et le poivre.",
+      "Assemble tous les ingrédients de la salade dans un grand saladier, ajoute les cranberries et les amandes, puis assaisonne de vinaigrette."
+    ]
+  },
+  {
+    id:"rillettes-pleurotes", name:"Rillettes de pleurotes", emoji:"🍄",
+    image:"images/rillettes-pleurotes.jpg", servings:4, temps:30, tags:["vegan","poêle"],
+    ingredients:[
+      {item:"pleurotes", qty:150, unit:"g", cat:"Légumes"},
+      {item:"échalotes", qty:3, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"lentilles vertes", qty:50, unit:"g", cat:"Épicerie"},
+      {item:"noix", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"levure maltée", qty:2, unit:"c.s.", cat:"Épicerie"},
+      {item:"sauce soja", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"cognac", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile de noisette", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"piment d'Espelette", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"cornichons", qty:0, unit:"", cat:"Épicerie"},
+      {item:"pain (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Cuis les lentilles à l'eau bouillante jusqu'à ce qu'elles soient tendres, égoutte et réserve.",
+      "Émince finement les échalotes en lanières et effiloche très finement les pleurotes à la main dans la longueur.",
+      "Chauffe l'huile d'olive dans une poêle et fais revenir 15 min les échalotes et les pleurotes avec l'ail pressé. Quand les pleurotes dorent, ajoute le cognac, laisse évaporer et retire du feu.",
+      "Mets tous les ingrédients SAUF le mélange de pleurotes dans un mixeur et mixe jusqu'à une texture assez lisse (ajoute un peu d'eau si besoin).",
+      "Ajoute les pleurotes et mixe à peine (1-2 à-coups) pour les incorporer sans perdre le côté filandreux.",
+      "Transvase en bocal et laisse reposer au frais au moins 30 min. Sers sur des tranches de pain grillé avec des cornichons."
+    ]
+  },
+  {
+    id:"oeufs-cocotte-butternut", name:"Œufs cocotte, butternut & épinards", emoji:"🥚",
+    image:"images/oeufs-cocotte-butternut.jpg", servings:4, temps:35, tags:["végé","four"],
+    ingredients:[
+      {item:"butternut", qty:280, unit:"g", cat:"Légumes"},
+      {item:"épinards", qty:200, unit:"g", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"œufs", qty:4, unit:"", cat:"Crèmerie"},
+      {item:"crème liquide", qty:120, unit:"ml", cat:"Crèmerie"},
+      {item:"parmesan", qty:4, unit:"c.c.", cat:"Crèmerie"},
+      {item:"beurre", qty:0, unit:"", cat:"Crèmerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+      {item:"pain (mouillettes)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Épluche et coupe la butternut en dés, puis cuis-la à la vapeur jusqu'à ce qu'elle soit tendre.",
+      "Préchauffe le four à 180°C (th. 6). Remplis d'eau à mi-hauteur un plat capable d'accueillir 4 ramequins et enfourne-le.",
+      "Rince et hache grossièrement les épinards, presse l'ail. Fais-les revenir à la poêle avec l'huile jusqu'à ce que les épinards réduisent.",
+      "Répartis la butternut dans les ramequins et écrase-la grossièrement, saupoudre de noix muscade. Ajoute les épinards et la crème, mélange rapidement.",
+      "Casse un œuf dans chaque ramequin, saupoudre de parmesan, sale et poivre. Dépose les ramequins dans le plat au four et cuis 20 min.",
+      "Déguste aussitôt avec des mouillettes de pain grillé et beurré."
+    ]
+  },
+  {
+    id:"parmentier-potimarron-lentilles", name:"Parmentier de potimarron & lentilles", emoji:"🎃",
+    image:"images/parmentier-potimarron-lentilles.jpg", servings:4, temps:100, tags:["vegan","gratin","four"],
+    ingredients:[
+      {item:"potimarron", qty:600, unit:"g", cat:"Légumes"},
+      {item:"pommes de terre à purée", qty:300, unit:"g", cat:"Légumes"},
+      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"céleri (branche)", qty:1, unit:"branche", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"champignons de Paris", qty:150, unit:"g", cat:"Légumes"},
+      {item:"romarin", qty:1, unit:"branche", cat:"Herbes"},
+      {item:"lentilles vertes", qty:120, unit:"g", cat:"Épicerie"},
+      {item:"coulis de tomates", qty:250, unit:"ml", cat:"Épicerie"},
+      {item:"boisson végétale", qty:30, unit:"ml", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Purée : épluche et coupe le potimarron et les pommes de terre en morceaux, cuis-les à la vapeur jusqu'à tendreté, puis réduis en purée avec la boisson végétale, la noix muscade, 2 c.s. d'huile d'olive, sel et poivre. Réserve.",
+      "Garniture : rince et cuis les lentilles à l'eau bouillante selon le paquet. Émince oignon, carotte, céleri et ail ; coupe les champignons en dés.",
+      "Dans un faitout, fais revenir oignon, carotte et céleri avec le laurier et le romarin 7-8 min dans l'huile d'olive. Ajoute l'ail et les champignons, poursuis 10 min. Ajoute les lentilles égouttées et le coulis de tomates, sale, poivre et laisse revenir encore 10 min.",
+      "Préchauffe le four à 180°C (th. 6). Étale la garniture aux lentilles dans un plat, aplatis, puis recouvre de purée.",
+      "Enfourne 30 min (passe 5 min sous le gril pour gratiner si tu veux). Laisse tiédir avant de servir."
+    ]
+  },
+  {
+    id:"croquettes-potimarron-chevre", name:"Croquettes de potimarron au chèvre", emoji:"🧆",
+    image:"images/croquettes-potimarron-chevre.jpg", servings:4, temps:65, tags:["végé","friture"],
+    ingredients:[
+      {item:"potimarron", qty:500, unit:"g", cat:"Légumes"},
+      {item:"ciboulette", qty:0, unit:"", cat:"Herbes"},
+      {item:"chèvre frais", qty:100, unit:"g", cat:"Crèmerie"},
+      {item:"œuf", qty:1, unit:"", cat:"Crèmerie"},
+      {item:"graines de lin moulues", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"flocons d'avoine", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"chapelure", qty:0, unit:"", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0, unit:"", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de friture", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Épluche et coupe le potimarron, cuis-le à la vapeur ~20 min puis réduis-le en purée.",
+      "Ajoute les graines de lin moulues, les flocons d'avoine, la muscade, sel et poivre. Mélange bien et laisse reposer au moins 10 min.",
+      "Pendant ce temps, hache la ciboulette et mélange-la avec le chèvre frais et l'ail en poudre. Forme 12 petites boules.",
+      "Bats l'œuf dans un bol, verse la chapelure dans une assiette creuse.",
+      "Mains humides : prélève une portion de purée, aplatis-la, dépose une boule de chèvre au centre et referme en croquette. Roule-la dans la chapelure, puis l'œuf, puis à nouveau la chapelure.",
+      "Chauffe ~1 cm d'huile dans une poêle et fais frire les croquettes 2-3 min de chaque côté. Égoutte sur papier absorbant et sers aussitôt."
+    ]
+  },
+  {
+    id:"crinkle-cake-courgette-feta", name:"Crinkle cake courgette & feta", emoji:"🥧",
+    image:"images/crinkle-cake-courgette-feta.jpg", servings:4, temps:65, tags:["végé","four","grec"],
+    ingredients:[
+      {item:"courgette", qty:1, unit:"", cat:"Légumes"},
+      {item:"menthe fraîche", qty:0, unit:"", cat:"Herbes"},
+      {item:"feta", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"œufs", qty:2, unit:"", cat:"Crèmerie"},
+      {item:"crème liquide", qty:150, unit:"ml", cat:"Crèmerie"},
+      {item:"pâte filo", qty:10, unit:"feuilles", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 180°C (th. 6). Badigeonne le fond d'un plat (~15×25 cm) avec 1 c.s. d'huile d'olive.",
+      "Coupe les feuilles de filo en deux dans la longueur, forme des accordéons avec chacune et dépose-les serrés dans le plat. Verse 3 c.s. d'huile par-dessus.",
+      "Coupe la courgette et la feta en fines lamelles longues et glisse-les dans les plis de l'accordéon, ainsi que les feuilles de menthe.",
+      "Bats les œufs avec la crème, sel et poivre, puis verse sur le plat.",
+      "Enfourne 50 min. Sers aussitôt."
+    ]
+  },
+  {
+    id:"tarte-fine-courgette-burrata", name:"Tarte fine courgette & burrata", emoji:"🫓",
+    image:"images/tarte-fine-courgette-burrata.jpg", servings:4, temps:40, tags:["végé","four","italien"],
+    ingredients:[
+      {item:"courgettes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"basilic frais", qty:1, unit:"poignée", cat:"Herbes"},
+      {item:"ricotta", qty:120, unit:"g", cat:"Crèmerie"},
+      {item:"burrata", qty:1, unit:"boule", cat:"Crèmerie"},
+      {item:"pâte feuilletée", qty:1, unit:"rouleau", cat:"Épicerie"},
+      {item:"vinaigre balsamique", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Hache l'ail et le basilic, mélange-les à la ricotta, sale et poivre.",
+      "Préchauffe le four à 190°C (th. 6-7). Tranche les courgettes en fines lamelles à la mandoline.",
+      "Étale la pâte feuilletée sur une plaque, répartis la ricotta dessus, dispose les rondelles de courgette et verse un filet d'huile d'olive.",
+      "Enfourne 25 min. À la sortie, dépose la burrata au centre, ajoute un filet de vinaigre balsamique, de la fleur de sel et le basilic restant. Déguste tiède ou froid."
+    ]
+  },
+  {
+    id:"salsa-tomates-gingembre", name:"Salsa de tomates, persil & gingembre", emoji:"🌶️",
+    image:"images/salsa-tomates-gingembre.jpg", servings:4, temps:10, tags:["vegan","sans cuisson"],
+    ingredients:[
+      {item:"tomates bien mûres", qty:500, unit:"g", cat:"Légumes"},
+      {item:"gingembre frais", qty:15, unit:"g", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
+      {item:"persil plat", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"citron vert", qty:0.5, unit:"", cat:"Fruits"},
+      {item:"vinaigre", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sucre", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"tortillas (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Coupe les tomates en tout petits dés. Pèle le gingembre, l'ail et l'oignon.",
+      "Passe le gingembre, l'ail et l'oignon au mixeur avec le persil et le jus de citron vert.",
+      "Assemble tous les ingrédients dans un grand bol avec le vinaigre, le sucre et le sel.",
+      "Laisse reposer 1 à 2 h au frais pour développer les saveurs. À déguster avec des tortillas !"
+    ]
+  },
+  {
+    id:"tomates-farcies-riz", name:"Tomates farcies au riz & herbes fraîches", emoji:"🍅",
+    image:"images/tomates-farcies-riz.jpg", servings:4, temps:100, tags:["vegan","four","grec"],
+    ingredients:[
+      {item:"tomates (grosses)", qty:5, unit:"", cat:"Légumes"},
+      {item:"poivrons", qty:4, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"pommes de terre", qty:2, unit:"", cat:"Légumes"},
+      {item:"menthe fraîche", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"persil plat", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"aneth", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"riz rond", qty:250, unit:"g", cat:"Épicerie"},
+      {item:"huile d'olive", qty:200, unit:"ml", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Coupe les capuchons des poivrons et des tomates (réserve-les). Retire les pépins des poivrons et évide les tomates.",
+      "Effeuille la menthe, retire les grosses tiges du persil et de l'aneth (garde les tiges tendres).",
+      "Mixe longuement la chair des tomates avec les oignons épluchés et les herbes.",
+      "Verse dans un grand bol, ajoute l'huile d'olive, 100 ml d'eau, le riz, sel et poivre, mélange bien.",
+      "Préchauffe le four à 210°C (th. 7). Farcis les légumes de ce mélange, replace les capuchons et pose-les dans un grand plat.",
+      "Coupe les pommes de terre en grosses frites et répartis-les au fond du plat (elles absorbent l'eau rendue). Arrose d'un filet d'huile d'olive.",
+      "Enfourne 15 min, puis baisse à 190°C (th. 6-7) et poursuis 1 h. Encore meilleur dégusté le lendemain !"
     ]
   }
 ];
