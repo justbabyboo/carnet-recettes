@@ -567,5 +567,51 @@ window.RECIPES = [
       "Montage (plat ~35×25 cm huilé) : couche de pommes de terre → aubergines → courgettes → 1 cm de béchamel. Refais une couche de légumes, verse la préparation champignons-quinoa, finis par une couche d'aubergines puis la dernière béchamel.",
       "Enfourne à 180°C environ 45 min à 1 h, jusqu'à ce que le dessus soit bien doré. Laisse reposer avant de couper — encore meilleure réchauffée le lendemain (et elle se congèle très bien)."
     ]
+  },
+  {
+    id:"brocoli-saute-soja", name:"Brocoli sauté à l'ail & sauce soja", emoji:"🥦",
+    image:"images/brocoli-saute-soja.jpg", servings:4, temps:18, tags:["vegan","poêle"],
+    ingredients:[
+      {item:"brocoli", qty:1, unit:"tête", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"sauce soja", qty:4, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile de sésame", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"cacahuètes crues", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"fécule de maïs", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"flocons de piment", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de tournesol", qty:0, unit:"", cat:"Épicerie"},
+      {item:"riz (pour servir)", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Dans un bol, mélange 4 c.s. d'eau, la sauce soja, l'huile de sésame, les flocons de piment et la fécule de maïs jusqu'à ce qu'il n'y ait plus de grumeaux. Réserve.",
+      "Concasse grossièrement les cacahuètes. Réserve.",
+      "Rince le brocoli et détaille-le en petites fleurettes (tu peux éplucher le tronc et l'émincer). Épluche et presse l'ail.",
+      "Chauffe un wok à feu vif avec l'huile de tournesol, fais revenir le brocoli et l'ail 3-4 min.",
+      "Baisse à feu moyen, ajoute la sauce et les cacahuètes, poursuis 3-4 min. Sers chaud, accompagné de riz."
+    ]
+  },
+  {
+    id:"salade-brocoli-cranberries", name:"Salade de brocoli, cranberries & amandes", emoji:"🥗",
+    image:"images/salade-brocoli-cranberries.jpg", servings:4, temps:15, tags:["végé","salade","sans cuisson"],
+    ingredients:[
+      {item:"brocoli", qty:1, unit:"tête", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"yaourt grec (ou yaourt de soja)", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"amandes effilées", qty:20, unit:"g", cat:"Épicerie"},
+      {item:"cranberries séchées", qty:20, unit:"g", cat:"Épicerie"},
+      {item:"moutarde fine", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"moutarde en grains", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"vinaigre de cidre", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sirop d'érable", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Nettoie le brocoli et casse-le en petits tronçons à la main. Épluche et râpe le tronc du brocoli et la carotte. Émince finement le demi-oignon rouge.",
+      "Fais griller les amandes effilées à sec quelques minutes à la poêle jusqu'à ce qu'elles dorent.",
+      "Vinaigrette : mélange le yaourt, la moutarde fine, la moutarde en grains, le sirop d'érable, le vinaigre de cidre, le sel et le poivre.",
+      "Assemble tous les ingrédients de la salade dans un grand saladier, ajoute les cranberries et les amandes, puis assaisonne de vinaigrette."
+    ]
   }
 ];
