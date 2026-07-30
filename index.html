@@ -547,7 +547,8 @@ function renderCart(){
       <button onclick="addManual()" style="padding:11px 16px;border:none;border-radius:12px;background:var(--ink);color:var(--paper);font:inherit;font-weight:600;cursor:pointer">Ajouter</button>
     </div>`;
   if(cart.size===0 && !allItems.length){
-    host.innerHTML = `${addUI}<div class="empty"><div class="big">🧺</div><p>Ta liste est vide. Ajoute des recettes, ou ajoute un article à la main ci-dessus.</p></div>`;
+    host.innerHTML = `${addUI}<div class="empty"><div class="big">🧺</div><p>Ta liste est vide. Ajoute des recettes, ou ajoute un article à la main ci-dessus.</p>
+      <button onclick="restoreSnapshot()" style="margin-top:10px;padding:11px 16px;border:none;border-radius:12px;background:var(--ink);color:var(--paper);font:inherit;font-weight:600;cursor:pointer">↻ Restaurer ma liste (4 recettes · 20 cochés)</button></div>`;
     fillManCat(); return;
   }
   const total = allItems.length;
@@ -612,6 +613,19 @@ function delManual(id){
 }
 function saveManualLocal(){ try{ localStorage.setItem("manual_"+LIST, JSON.stringify(MANUAL)); }catch(e){} }
 function loadManualLocal(){ try{ const s=localStorage.getItem("manual_"+LIST); if(s){ const a=JSON.parse(s); if(Array.isArray(a)) MANUAL=a; } }catch(e){} }
+/* ---- restauration ponctuelle d'une liste (après incident) ---- */
+const RESTORE_SNAPSHOT = {
+  recipes: ["salade-brocoli-cranberries","gratin-haricots-mozza","chou-fleur-sesame","salsa-tomates-gingembre"],
+  checks: ["citron vert","ail","brocoli","carotte","oignon jaune","yaourt grec (ou yaourt de soja)","concentré de tomate","farine","moutarde en grains","moutarde fine","origan séché","paprika doux","poivre","riz (pour servir)","sauce soja (tamari)","sel","sucre","thym","vinaigre","vinaigre de cidre"]
+};
+function restoreSnapshot(){
+  RESTORE_SNAPSHOT.recipes.forEach(id=>{ if(RECIPES.find(r=>r.id===id)) cart.add(id); });
+  RESTORE_SNAPSHOT.checks.forEach(n=>checked.add(n.toLowerCase()));
+  updateCount(); renderGrid();
+  if(view!=="cart") setView("cart"); else renderCart();
+  RESTORE_SNAPSHOT.recipes.forEach(id=>dbAddCart(id));
+  RESTORE_SNAPSHOT.checks.forEach(n=>dbCheck(n.toLowerCase()));
+}
 function toggleCheckEl(el){
   const key = el.dataset.key;
   let legacy=[]; try{ legacy = JSON.parse(el.dataset.legacy||"[]"); }catch(e){}
