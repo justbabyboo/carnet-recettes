@@ -479,5 +479,34 @@ window.RECIPES = [
       "Épluche les aubergines et mets la chair dans un mixeur avec l'oignon nouveau, l'ail, 2 c.s. de jus de citron, 4 c.s. d'huile d'olive, le tahini, le cumin, le persil et du sel. Mixe jusqu'à une consistance lisse et légèrement mousseuse. Ajuste l'assaisonnement.",
       "Laisse reposer au moins 1 h au frais. Sers avec des pitas, du pain ou des crudités (délicieux aussi en sandwich)."
     ]
+  },
+  {
+    id:"chou-fleur-sesame", name:"Chou-fleur caramélisé au sésame", emoji:"🥦",
+    image:"images/chou-fleur-sesame.jpg", servings:4, temps:40, tags:["vegan","four"],
+    ingredients:[
+      {item:"chou-fleur (~700 g)", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"gingembre frais", qty:1, unit:"morceau", cat:"Légumes"},
+      {item:"oignon nouveau", qty:1, unit:"", cat:"Légumes"},
+      {item:"boisson végétale", qty:190, unit:"ml", cat:"Épicerie"},
+      {item:"farine", qty:120, unit:"g", cat:"Épicerie"},
+      {item:"fécule de maïs", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"sauce soja (tamari)", qty:6, unit:"c.s.", cat:"Épicerie"},
+      {item:"sirop d'érable", qty:6, unit:"c.s.", cat:"Épicerie"},
+      {item:"vinaigre de riz", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile de sésame", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sauce sriracha", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"graines de sésame", qty:0, unit:"", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"riz (pour servir)", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 220°C (th. 7-8) et casse le chou-fleur en fleurettes.",
+      "Pâte : mélange dans un bol la farine, 40 g de fécule de maïs, le sel, 2 c.c. de graines de sésame, l'ail en poudre et la boisson végétale. Trempe les fleurettes dedans, étale-les sur une plaque et enfourne à mi-hauteur 20 min.",
+      "Sauce : mixe l'ail et le gingembre en pâte. Dans un wok chaud, verse la sauce soja, le sirop d'érable, le vinaigre de riz, l'huile de sésame, la sriracha et la pâte ail-gingembre. Porte à ébullition puis mijote 5 min.",
+      "Délaye 2 c.s. de fécule de maïs dans 100 ml d'eau froide, verse dans le wok et mélange : la sauce épaissit en ~5 min jusqu'à devenir épaisse et collante.",
+      "Transfère aussitôt le chou-fleur dans le wok et enrobe bien chaque morceau. Sers avec du riz, des graines de sésame et des rondelles d'oignon nouveau."
+    ]
   }
 ];
