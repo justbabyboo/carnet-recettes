@@ -721,5 +721,50 @@ window.RECIPES = [
       "Mains humides : prélève une portion de purée, aplatis-la, dépose une boule de chèvre au centre et referme en croquette. Roule-la dans la chapelure, puis l'œuf, puis à nouveau la chapelure.",
       "Chauffe ~1 cm d'huile dans une poêle et fais frire les croquettes 2-3 min de chaque côté. Égoutte sur papier absorbant et sers aussitôt."
     ]
+  },
+  {
+    id:"crinkle-cake-courgette-feta", name:"Crinkle cake courgette & feta", emoji:"🥧",
+    image:"images/crinkle-cake-courgette-feta.jpg", servings:4, temps:65, tags:["végé","four","grec"],
+    ingredients:[
+      {item:"courgette", qty:1, unit:"", cat:"Légumes"},
+      {item:"menthe fraîche", qty:0, unit:"", cat:"Herbes"},
+      {item:"feta", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"œufs", qty:2, unit:"", cat:"Crèmerie"},
+      {item:"crème liquide", qty:150, unit:"ml", cat:"Crèmerie"},
+      {item:"pâte filo", qty:10, unit:"feuilles", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 180°C (th. 6). Badigeonne le fond d'un plat (~15×25 cm) avec 1 c.s. d'huile d'olive.",
+      "Coupe les feuilles de filo en deux dans la longueur, forme des accordéons avec chacune et dépose-les serrés dans le plat. Verse 3 c.s. d'huile par-dessus.",
+      "Coupe la courgette et la feta en fines lamelles longues et glisse-les dans les plis de l'accordéon, ainsi que les feuilles de menthe.",
+      "Bats les œufs avec la crème, sel et poivre, puis verse sur le plat.",
+      "Enfourne 50 min. Sers aussitôt."
+    ]
+  },
+  {
+    id:"tarte-fine-courgette-burrata", name:"Tarte fine courgette & burrata", emoji:"🫓",
+    image:"images/tarte-fine-courgette-burrata.jpg", servings:4, temps:40, tags:["végé","four","italien"],
+    ingredients:[
+      {item:"courgettes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"basilic frais", qty:1, unit:"poignée", cat:"Herbes"},
+      {item:"ricotta", qty:120, unit:"g", cat:"Crèmerie"},
+      {item:"burrata", qty:1, unit:"boule", cat:"Crèmerie"},
+      {item:"pâte feuilletée", qty:1, unit:"rouleau", cat:"Épicerie"},
+      {item:"vinaigre balsamique", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Hache l'ail et le basilic, mélange-les à la ricotta, sale et poivre.",
+      "Préchauffe le four à 190°C (th. 6-7). Tranche les courgettes en fines lamelles à la mandoline.",
+      "Étale la pâte feuilletée sur une plaque, répartis la ricotta dessus, dispose les rondelles de courgette et verse un filet d'huile d'olive.",
+      "Enfourne 25 min. À la sortie, dépose la burrata au centre, ajoute un filet de vinaigre balsamique, de la fleur de sel et le basilic restant. Déguste tiède ou froid."
+    ]
   }
 ];
