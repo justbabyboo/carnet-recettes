@@ -218,7 +218,31 @@ const CONFIG = {
   list: "carnet-cm-7f3a9"    // code secret partagé entre Can et toi
 };
 
-const AISLE_ORDER = ["Fruits","Légumes","Herbes","Crèmerie","Boulangerie","Épicerie"];
+const AISLE_ORDER = ["Fruits","Légumes","Herbes","Crèmerie","Traiteur","Boulangerie","Surgelés","Épicerie","Boissons","Hygiène","Maison"];
+
+/* ---- catégorisation automatique des articles ajoutés à la main ---- */
+const DIAC = new RegExp("[\\u0300-\\u036f]","g");
+function norm(s){ return (s||"").toLowerCase().normalize("NFD").replace(DIAC,"").trim(); }
+// règles ordonnées : le 1er mot-clé contenu dans le nom donne le rayon (spécifique d'abord)
+const AISLE_RULES = [
+  ["Légumes", ["pomme de terre","patate douce","patate"]],  // avant "pomme" (fruit)
+  ["Hygiène", ["papier toilette","essuie-tout","essuie tout","mouchoir","lingette","dentifrice","brosse a dent","fil dentaire","bain de bouche","gel douche","savon","shampoing","shampooing","apres-shampoing","apres shampooing","deodorant","creme solaire","creme visage","creme corps","creme hydratante","creme main","baume a levre","lotion","laque","cire capillaire","serum","masque capillaire","rasoir","coton"]],
+  ["Maison", ["liquide vaisselle","lave-vaisselle","lave vaisselle","tablette lave","eponge","torchon","gant de menage","gant de toilette","lessive","adoucissant","detachant","anti calcaire","anti-calcaire","gel wc","brosse wc","desodorisant","nettoyant","vitre","sac poubelle","poubelle","chiffon","microfibre","javel"]],
+  ["Boissons", ["eau plate","eau petillante","eau gazeuse","eau aromatis","cola","limonade","soda","tonic","ginger ale","jus ","jus d","smoothie","biere","lager","ipa","weiss","vin ","vin rouge","vin blanc","rose de","rosado","merlot","cabernet","pinot","chardonnay","sauvignon","riesling","champagne","prosecco","cava","vodka","rhum","whisky","tequila","spritz","aperol","kombucha"]],
+  ["Surgelés", ["surgel","congel","glace","sorbet","pizza","churros","frites"]],
+  ["Traiteur", ["tofu","tempeh","seitan","falafel","saucisse veg","burger veg","steak veg","emince veg","salami veg","mortadelle veg","jambon","prosciutto","chorizo","salami","mortadelle","rosbif","dinde","charcuterie","houmous","hummus","guacamole","tzatziki","tapenade","tarama"]],
+  ["Boulangerie", ["pain","baguette","buns","brioche","croissant","chocolatine","ciabatta","focaccia","bagel","wrap","pita","tortilla","english muffin","muffin","pain de mie","biscotte","levain","sourdough","viennoiserie","tarte","gateau","cheesecake","eclair","cookie","biscuit","crepe"]],
+  ["Crèmerie", ["oeuf","beurre","margarine","lait ","lait d","lait de","yaourt","yoghurt","fromage blanc","skyr","creme fraiche","creme liquide","creme epaisse","sahne","mascarpone","fromage","mozzarella","burrata","feta","chevre","gorgonzola","halloumi","ricotta","brie","gouda","emmental","cheddar","parmesan","gruyere","comte","manchego","camembert","philadelphia","obazda","moret","tiramisu","pudding","creme dessert"]],
+  ["Herbes", ["menthe","persil","basilic","romarin","ciboulette","thym","coriandre","estragon","aneth","laurier"]],
+  ["Fruits", ["avocat","banane","citron","kiwi","orange","clementine","pomme","melon","raisin","peche","fraise","framboise","ananas","mangue","poire","pamplemousse","myrtille","cerise","abricot","pasteque","fruits rouges"]],
+  ["Légumes", ["tomate","concombre","poivron","butternut","carotte","aubergine","courgette","zucchini","chou","champignon","gingembre","oignon","echalote","pak choi","choi chinois","brocoli","radis","mais","ail","celeri","poireau","courge","salade","romaine","mache","iceberg","roquette","ruccola","epinard","laitue","cresson","kale","betterave","fenouil","haricot vert","petit pois","navet"]],
+  ["Épicerie", ["riz","pate","spaghetti","penne","fusilli","linguine","farfalle","gnocchi","ravioli","tortellini","quinoa","couscous","boulgour","lentille","pois chiche","haricot","farine","sucre","sel","poivre","paprika","cumin","curry","curcuma","cannelle","epice","huile","vinaigre","sauce","pesto","ketchup","mayo","moutarde","harissa","conserve","concasse","cereale","cornflakes","muesli","granola","avoine","nutella","tartiner","confiture","miel","agave","sirop","cacao","cafe","matcha","chips","cracker","chocolat","bonbon","noix","amande","cajou","pistache","cacahuete","tahini","nori","miso","soupe","olive","cornichon","capre","the "]],
+];
+function guessAisle(name){
+  const n = norm(name); if(!n) return "Épicerie";
+  for(const [aisle,kws] of AISLE_RULES){ for(const kw of kws){ if(n.includes(kw)) return aisle; } }
+  return "Épicerie";
+}
 
 /* ---- filtres ---- */
 const GROUP_DEFS = [
@@ -247,6 +271,7 @@ let myName = "";              // prénom utilisé pour signer les commentaires (
 let openId = null;            // recette actuellement ouverte dans la fiche
 let view = "recipes";
 let hideChecked = false; try{ hideChecked = localStorage.getItem("hideChecked")==="1"; }catch(e){}
+let MANUAL = [];   // articles ajoutés à la main : {id, item, cat}
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
@@ -496,6 +521,11 @@ function buildList(){
   });
   const byAisle = {};
   [...map.values()].forEach(v=>{ (byAisle[v.cat]=byAisle[v.cat]||[]).push(v); });
+  // articles ajoutés à la main
+  MANUAL.forEach(m=>{
+    const it={key:"m:"+m.item.toLowerCase(), item:m.item, cat:m.cat||guessAisle(m.item), units:new Map(), manual:true, mid:m.id};
+    (byAisle[it.cat]=byAisle[it.cat]||[]).push(it);
+  });
   return byAisle;
 }
 // fusionne les quantités d'un même ingrédient (unités différentes affichées côte à côte)
@@ -506,12 +536,20 @@ function qtyMerged(units){
 }
 function renderCart(){
   const host = $("#view-cart");
-  if(cart.size===0){
-    host.innerHTML = `<div class="empty"><div class="big">🧺</div><p>Aucune recette sélectionnée. Ajoute des recettes et ta liste de courses se construit ici.</p></div>`;
-    return;
-  }
   const byAisle = buildList();
   const allItems = Object.values(byAisle).flat();
+  const addUI = `
+    <div class="manadd" style="display:flex;gap:8px;margin:6px 0 16px;flex-wrap:wrap">
+      <input id="man-item" placeholder="Ajouter un article (ex. papier toilette)…" autocomplete="off"
+        oninput="onManInput()" onkeydown="if(event.key==='Enter'){event.preventDefault();addManual();}"
+        style="flex:1 1 180px;min-width:0;padding:11px 13px;border:1px solid #e0ddd2;border-radius:12px;font:inherit;background:var(--paper)">
+      <select id="man-cat" aria-label="rayon" style="padding:11px 10px;border:1px solid #e0ddd2;border-radius:12px;font:inherit;background:var(--paper)"></select>
+      <button onclick="addManual()" style="padding:11px 16px;border:none;border-radius:12px;background:var(--ink);color:var(--paper);font:inherit;font-weight:600;cursor:pointer">Ajouter</button>
+    </div>`;
+  if(cart.size===0 && !allItems.length){
+    host.innerHTML = `${addUI}<div class="empty"><div class="big">🧺</div><p>Ta liste est vide. Ajoute des recettes, ou ajoute un article à la main ci-dessus.</p></div>`;
+    fillManCat(); return;
+  }
   const total = allItems.length;
   const done = allItems.filter(i=>checked.has(i.key)).length;
   const chips = [...cart].map(id=>{
@@ -525,7 +563,8 @@ function renderCart(){
         <button class="clearall" onclick="clearChecks()">Tout décocher</button>
       </div>
     </div>
-    <div class="chips">${chips}</div>`;
+    ${chips?`<div class="chips">${chips}</div>`:``}
+    ${addUI}`;
   AISLE_ORDER.filter(a=>byAisle[a]).forEach(a=>{
     const items = byAisle[a].filter(i=>!(hideChecked && checked.has(i.key))).sort((x,y)=>x.item.localeCompare(y.item));
     if(!items.length) return;
@@ -533,9 +572,10 @@ function renderCart(){
     items.forEach(i=>{
       const on = checked.has(i.key);
       const legacy = JSON.stringify([...i.units.keys()].map(u=>i.key+"__"+u));
+      const del = i.manual ? ` <button onclick="event.stopPropagation();delManual('${i.mid}')" aria-label="supprimer" style="border:none;background:none;color:#b23;cursor:pointer;font-size:13px;padding:0 2px">✕</button>` : ``;
       html += `<div class="check ${on?'on':''}" data-key="${esc(i.key)}" data-legacy="${esc(legacy)}" onclick="toggleCheckEl(this)">
         <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2B22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span>
-        <span class="name">${i.item}</span>
+        <span class="name">${i.item}${del}</span>
         <span class="qty">${qtyMerged(i.units)}</span>
       </div>`;
     });
@@ -545,7 +585,33 @@ function renderCart(){
     html += `<div class="empty" style="padding:24px 0"><p>Tout est coché ✅</p></div>`;
   }
   host.innerHTML = html;
+  fillManCat();
 }
+function fillManCat(){
+  const sc=$("#man-cat"); if(!sc) return;
+  const inp=$("#man-item");
+  const cur = inp ? guessAisle(inp.value) : "Épicerie";
+  sc.innerHTML = AISLE_ORDER.map(a=>`<option ${a===cur?"selected":""}>${a}</option>`).join("");
+}
+function onManInput(){ const sc=$("#man-cat"), inp=$("#man-item"); if(sc&&inp) sc.value=guessAisle(inp.value); }
+function addManual(){
+  const inp=$("#man-item"), sc=$("#man-cat");
+  const item=(inp&&inp.value||"").trim(); if(!item) return;
+  const cat=(sc&&sc.value)||guessAisle(item);
+  const id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("m"+String(Date.now())+"-"+Math.round(Math.random()*1e6));
+  MANUAL.push({id,item,cat}); saveManualLocal();
+  renderCart();
+  const ni=$("#man-item"); if(ni) ni.focus();
+  dbAddManual(id,item,cat);
+}
+function delManual(id){
+  const m=MANUAL.find(x=>x.id===id);
+  MANUAL=MANUAL.filter(x=>x.id!==id); saveManualLocal();
+  if(m){ const key="m:"+m.item.toLowerCase(); checked.delete(key); dbUncheck(key,[]); }
+  renderCart(); dbDelManual(id);
+}
+function saveManualLocal(){ try{ localStorage.setItem("manual_"+LIST, JSON.stringify(MANUAL)); }catch(e){} }
+function loadManualLocal(){ try{ const s=localStorage.getItem("manual_"+LIST); if(s){ const a=JSON.parse(s); if(Array.isArray(a)) MANUAL=a; } }catch(e){} }
 function toggleCheckEl(el){
   const key = el.dataset.key;
   let legacy=[]; try{ legacy = JSON.parse(el.dataset.legacy||"[]"); }catch(e){}
@@ -584,6 +650,8 @@ async function dbServings(id){ if(!SHARED||!cart.has(id))return; try{ await supa
 async function dbCheck(key){ if(!SHARED)return; try{ await supa.from("checks").upsert({list_id:LIST,item_key:key}); }catch(e){console.warn(e);} }
 async function dbUncheck(key, legacy){ if(!SHARED)return; try{ const keys=[key,...((legacy||[]))]; await supa.from("checks").delete().eq("list_id",LIST).in("item_key",keys); }catch(e){console.warn(e);} }
 async function dbClearChecks(){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST); }catch(e){console.warn(e);} }
+async function dbAddManual(id,item,cat){ if(!SHARED)return; try{ await supa.from("manual_items").upsert({id,list_id:LIST,item,cat}); }catch(e){console.warn(e);} }
+async function dbDelManual(id){ if(!SHARED)return; try{ await supa.from("manual_items").delete().eq("id",id); }catch(e){console.warn(e);} }
 async function dbSetImage(id,url){ if(!SHARED)return; try{ await supa.from("recipe_images").upsert({recipe_id:id,url,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
 async function dbDelImage(id){ if(!SHARED)return; try{ await supa.from("recipe_images").delete().eq("recipe_id",id); }catch(e){console.warn(e);} }
 async function dbSetRating(id,stars){ if(!SHARED)return; try{ await supa.from("recipe_ratings").upsert({recipe_id:id,stars,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
@@ -643,12 +711,18 @@ async function pullState(){
     (ra.data||[]).forEach(r=>ratings.set(r.recipe_id, r.stars));
     comments.clear();
     (cm.data||[]).forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); });
+    // articles manuels : chargés à part pour ne pas casser le reste si la table n'existe pas encore
+    try{
+      const mi = await supa.from("manual_items").select("id,item,cat").eq("list_id",LIST);
+      if(mi && !mi.error && Array.isArray(mi.data)){ MANUAL = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat})); saveManualLocal(); }
+    }catch(e){ /* table manual_items absente : on garde la version locale */ }
     renderGrid(); updateCount(); if(view==="cart") renderCart();
     if(openId){ renderRating(openId); renderComments(openId); }
   }catch(e){ console.warn(e); }
   pulling=false;
 }
 
+loadManualLocal();
 renderFilters(); renderGrid(); updateCount(); showStatus();
 if(SHARED){
   pullState();
@@ -658,6 +732,7 @@ if(SHARED){
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_images"}, pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_ratings"}, pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_comments"}, pullState)
+    .on("postgres_changes",{event:"*",schema:"public",table:"manual_items"}, pullState)
     .subscribe();
 }</script>
 </body>
