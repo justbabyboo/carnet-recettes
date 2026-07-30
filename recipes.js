@@ -666,5 +666,60 @@ window.RECIPES = [
       "Casse un œuf dans chaque ramequin, saupoudre de parmesan, sale et poivre. Dépose les ramequins dans le plat au four et cuis 20 min.",
       "Déguste aussitôt avec des mouillettes de pain grillé et beurré."
     ]
+  },
+  {
+    id:"parmentier-potimarron-lentilles", name:"Parmentier de potimarron & lentilles", emoji:"🎃",
+    image:"images/parmentier-potimarron-lentilles.jpg", servings:4, temps:100, tags:["vegan","gratin","four"],
+    ingredients:[
+      {item:"potimarron", qty:600, unit:"g", cat:"Légumes"},
+      {item:"pommes de terre à purée", qty:300, unit:"g", cat:"Légumes"},
+      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"céleri (branche)", qty:1, unit:"branche", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"champignons de Paris", qty:150, unit:"g", cat:"Légumes"},
+      {item:"romarin", qty:1, unit:"branche", cat:"Herbes"},
+      {item:"lentilles vertes", qty:120, unit:"g", cat:"Épicerie"},
+      {item:"coulis de tomates", qty:250, unit:"ml", cat:"Épicerie"},
+      {item:"boisson végétale", qty:30, unit:"ml", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Purée : épluche et coupe le potimarron et les pommes de terre en morceaux, cuis-les à la vapeur jusqu'à tendreté, puis réduis en purée avec la boisson végétale, la noix muscade, 2 c.s. d'huile d'olive, sel et poivre. Réserve.",
+      "Garniture : rince et cuis les lentilles à l'eau bouillante selon le paquet. Émince oignon, carotte, céleri et ail ; coupe les champignons en dés.",
+      "Dans un faitout, fais revenir oignon, carotte et céleri avec le laurier et le romarin 7-8 min dans l'huile d'olive. Ajoute l'ail et les champignons, poursuis 10 min. Ajoute les lentilles égouttées et le coulis de tomates, sale, poivre et laisse revenir encore 10 min.",
+      "Préchauffe le four à 180°C (th. 6). Étale la garniture aux lentilles dans un plat, aplatis, puis recouvre de purée.",
+      "Enfourne 30 min (passe 5 min sous le gril pour gratiner si tu veux). Laisse tiédir avant de servir."
+    ]
+  },
+  {
+    id:"croquettes-potimarron-chevre", name:"Croquettes de potimarron au chèvre", emoji:"🧆",
+    image:"images/croquettes-potimarron-chevre.jpg", servings:4, temps:65, tags:["végé","friture"],
+    ingredients:[
+      {item:"potimarron", qty:500, unit:"g", cat:"Légumes"},
+      {item:"ciboulette", qty:0, unit:"", cat:"Herbes"},
+      {item:"chèvre frais", qty:100, unit:"g", cat:"Crèmerie"},
+      {item:"œuf", qty:1, unit:"", cat:"Crèmerie"},
+      {item:"graines de lin moulues", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"flocons d'avoine", qty:40, unit:"g", cat:"Épicerie"},
+      {item:"chapelure", qty:0, unit:"", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0, unit:"", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de friture", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Épluche et coupe le potimarron, cuis-le à la vapeur ~20 min puis réduis-le en purée.",
+      "Ajoute les graines de lin moulues, les flocons d'avoine, la muscade, sel et poivre. Mélange bien et laisse reposer au moins 10 min.",
+      "Pendant ce temps, hache la ciboulette et mélange-la avec le chèvre frais et l'ail en poudre. Forme 12 petites boules.",
+      "Bats l'œuf dans un bol, verse la chapelure dans une assiette creuse.",
+      "Mains humides : prélève une portion de purée, aplatis-la, dépose une boule de chèvre au centre et referme en croquette. Roule-la dans la chapelure, puis l'œuf, puis à nouveau la chapelure.",
+      "Chauffe ~1 cm d'huile dans une poêle et fais frire les croquettes 2-3 min de chaque côté. Égoutte sur papier absorbant et sers aussitôt."
+    ]
   }
 ];
