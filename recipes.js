@@ -303,7 +303,7 @@ window.RECIPES = [
       {item:"oignon rouge", qty:1, unit:"", cat:"Légumes"},
       {item:"graines de grenade", qty:1, unit:"", cat:"Fruits"},
       {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
-      {item:"coriandre fraîche (ou menthe)", qty:0, unit:"", cat:"Herbes"},
+      {item:"persil plat (ou menthe)", qty:0, unit:"", cat:"Herbes"},
       {item:"yaourt grec", qty:200, unit:"g", cat:"Crèmerie"},
       {item:"citron", qty:1, unit:"", cat:"Fruits"},
       {item:"paprika fumé", qty:0, unit:"", cat:"Épicerie"},
@@ -318,7 +318,7 @@ window.RECIPES = [
       "Sauce : mélange le yaourt grec, l'ail écrasé, le jus de citron, du sel et du poivre.",
       "Prépare les crudités : émince la laitue, le concombre, la tomate et l'oignon rouge ; râpe les carottes ; tranche l'avocat.",
       "Tiédis légèrement les tortillas (poêle ou micro-ondes) pour qu'elles roulent sans casser.",
-      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de coriandre. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
+      "Tartine chaque wrap de sauce, garnis de crudités, de protéine, de graines de grenade et de persil. Roule bien serré, replie une extrémité, coupe en deux et sers frais."
     ]
   },
   {
@@ -768,14 +768,14 @@ window.RECIPES = [
     ]
   },
   {
-    id:"salsa-tomates-gingembre", name:"Salsa de tomates, coriandre & gingembre", emoji:"🌶️",
+    id:"salsa-tomates-gingembre", name:"Salsa de tomates, persil & gingembre", emoji:"🌶️",
     image:"images/salsa-tomates-gingembre.jpg", servings:4, temps:10, tags:["vegan","sans cuisson"],
     ingredients:[
       {item:"tomates bien mûres", qty:500, unit:"g", cat:"Légumes"},
       {item:"gingembre frais", qty:15, unit:"g", cat:"Légumes"},
       {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
       {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
-      {item:"coriandre fraîche", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"persil plat", qty:0.5, unit:"botte", cat:"Herbes"},
       {item:"citron vert", qty:0.5, unit:"", cat:"Fruits"},
       {item:"vinaigre", qty:1, unit:"c.s.", cat:"Épicerie"},
       {item:"sucre", qty:1, unit:"c.c.", cat:"Épicerie"},
@@ -784,7 +784,7 @@ window.RECIPES = [
     ],
     steps:[
       "Coupe les tomates en tout petits dés. Pèle le gingembre, l'ail et l'oignon.",
-      "Passe le gingembre, l'ail et l'oignon au mixeur avec la coriandre et le jus de citron vert.",
+      "Passe le gingembre, l'ail et l'oignon au mixeur avec le persil et le jus de citron vert.",
       "Assemble tous les ingrédients dans un grand bol avec le vinaigre, le sucre et le sel.",
       "Laisse reposer 1 à 2 h au frais pour développer les saveurs. À déguster avec des tortillas !"
     ]
