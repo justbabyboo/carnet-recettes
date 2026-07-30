@@ -508,5 +508,64 @@ window.RECIPES = [
       "Délaye 2 c.s. de fécule de maïs dans 100 ml d'eau froide, verse dans le wok et mélange : la sauce épaissit en ~5 min jusqu'à devenir épaisse et collante.",
       "Transfère aussitôt le chou-fleur dans le wok et enrobe bien chaque morceau. Sers avec du riz, des graines de sésame et des rondelles d'oignon nouveau."
     ]
+  },
+  {
+    id:"aubergines-ottomane", name:"Aubergines farcies à l'ottomane", emoji:"🍆",
+    image:"images/aubergines-ottomane.jpg", servings:4, temps:105, tags:["vegan","four","grec"],
+    ingredients:[
+      {item:"aubergines", qty:4, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:1, unit:"gousse", cat:"Légumes"},
+      {item:"tomates concassées en conserve", qty:300, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:140, unit:"g", cat:"Épicerie"},
+      {item:"cannelle en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"origan séché", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Lave les aubergines et fends-les dans la longueur au couteau, sans les couper en deux ni retirer le pédoncule.",
+      "Chauffe 8 c.s. d'huile d'olive dans une grande poêle, dépose les aubergines, couvre et fais-les frire 20 min en les tournant : elles doivent devenir molles et la chair commencer à se détacher.",
+      "Pendant ce temps, émince les oignons en fines lamelles et hache grossièrement l'ail.",
+      "Fais-les revenir 10 min dans une casserole avec 3 c.s. d'huile d'olive. Ajoute le concentré de tomate, la cannelle, l'origan et le laurier, laisse revenir quelques minutes, puis ajoute les tomates concassées et 3 c.s. d'eau. Sale et laisse mijoter à petits bouillons au moins 10 min.",
+      "Préchauffe le four à 180°C (th. 6). Dépose les aubergines dans un plat.",
+      "Avec une fourchette, écrase la chair par la fente (sans percer la peau) et farcis d'abord de sauce tomate ; répartis le reste de sauce autour.",
+      "Enfourne 45 min. Laisse tiédir, voire refroidir, avant de servir — encore meilleur le lendemain !"
+    ]
+  },
+  {
+    id:"moussaka-vege", name:"Moussaka végétarienne", emoji:"🥘",
+    image:"images/moussaka-vege.jpg", servings:10, temps:150, tags:["végé","gratin","grec","four"],
+    ingredients:[
+      {item:"aubergines", qty:3, unit:"", cat:"Légumes"},
+      {item:"courgettes", qty:3, unit:"", cat:"Légumes"},
+      {item:"pommes de terre", qty:6, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"champignons de Paris", qty:400, unit:"g", cat:"Légumes"},
+      {item:"persil plat", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"œuf", qty:1, unit:"", cat:"Crèmerie"},
+      {item:"lait", qty:1, unit:"l", cat:"Crèmerie"},
+      {item:"beurre", qty:80, unit:"g", cat:"Crèmerie"},
+      {item:"parmesan râpé (facultatif)", qty:50, unit:"g", cat:"Crèmerie"},
+      {item:"quinoa", qty:100, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:140, unit:"g", cat:"Épicerie"},
+      {item:"farine", qty:110, unit:"g", cat:"Épicerie"},
+      {item:"cannelle en poudre", qty:1.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"laurier", qty:2, unit:"feuilles", cat:"Épicerie"},
+      {item:"noix muscade", qty:0, unit:"", cat:"Épicerie"},
+      {item:"origan séché", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Légumes : préchauffe le four à 200°C (th. 6-7). Coupe aubergines, courgettes et pommes de terre épluchées en lamelles de ½ cm dans la longueur. Étale sur des plaques, badigeonne d'huile d'olive, origan, sel et poivre, puis enfourne 30 min (en plusieurs fournées si besoin).",
+      "Couche du milieu : émince et hache oignons et ail, fais-les revenir dans une sauteuse avec l'huile d'olive et le laurier ~10 min. Ajoute le concentré de tomate, laisse revenir. Mixe grossièrement les champignons et ajoute-les. Rince le quinoa, ajoute-le avec 200 ml d'eau, la cannelle, le persil haché et le sel. Fais revenir 20 min en remuant. Réserve.",
+      "Béchamel : bats l'œuf dans un bol de lait. Dans une casserole, chauffe l'huile d'olive et le beurre, ajoute la farine et cuis 5 min. Verse le mélange œuf-lait puis le reste du lait petit à petit en fouettant jusqu'à la consistance voulue. Ajoute cannelle, noix muscade, sel, poivre et le parmesan (facultatif).",
+      "Montage (plat ~35×25 cm huilé) : couche de pommes de terre → aubergines → courgettes → 1 cm de béchamel. Refais une couche de légumes, verse la préparation champignons-quinoa, finis par une couche d'aubergines puis la dernière béchamel.",
+      "Enfourne à 180°C environ 45 min à 1 h, jusqu'à ce que le dessus soit bien doré. Laisse reposer avant de couper — encore meilleure réchauffée le lendemain (et elle se congèle très bien)."
+    ]
   }
 ];
