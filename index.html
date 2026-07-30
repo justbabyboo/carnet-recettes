@@ -246,6 +246,7 @@ const comments = new Map();   // recipe_id -> [ {id, author, body, created_at} ]
 let myName = "";              // prénom utilisé pour signer les commentaires (session)
 let openId = null;            // recette actuellement ouverte dans la fiche
 let view = "recipes";
+let hideChecked = false; try{ hideChecked = localStorage.getItem("hideChecked")==="1"; }catch(e){}
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
@@ -486,14 +487,22 @@ function buildList(){
     const r = RECIPES.find(x=>x.id===id);
     const ratio = (sel.get(id)||r.servings)/r.servings;
     r.ingredients.forEach(ing=>{
-      const key = ing.item.toLowerCase()+"__"+ing.unit;
-      if(!map.has(key)) map.set(key,{item:ing.item, unit:ing.unit, cat:ing.cat, qty:0});
-      map.get(key).qty += ing.qty*ratio;
+      const key = ing.item.toLowerCase();                 // agrège par NOM (plus par nom+unité) → pas de doublon
+      if(!map.has(key)) map.set(key,{key, item:ing.item, cat:ing.cat, units:new Map()});
+      const rec = map.get(key);
+      const u = ing.unit||"";
+      rec.units.set(u, (rec.units.get(u)||0) + ing.qty*ratio);
     });
   });
   const byAisle = {};
-  [...map.entries()].forEach(([key,v])=>{ (byAisle[v.cat]=byAisle[v.cat]||[]).push({key,...v}); });
+  [...map.values()].forEach(v=>{ (byAisle[v.cat]=byAisle[v.cat]||[]).push(v); });
   return byAisle;
+}
+// fusionne les quantités d'un même ingrédient (unités différentes affichées côte à côte)
+function qtyMerged(units){
+  const parts=[];
+  units.forEach((q,u)=>{ const t=qtyText(q,u); if(t) parts.push(t); });
+  return parts.join(" + ");
 }
 function renderCart(){
   const host = $("#view-cart");
@@ -502,35 +511,48 @@ function renderCart(){
     return;
   }
   const byAisle = buildList();
-  const total = Object.values(byAisle).reduce((n,a)=>n+a.length,0);
-  const done = [...checked].filter(k=>{
-    return Object.values(byAisle).some(a=>a.some(i=>i.key===k));
-  }).length;
+  const allItems = Object.values(byAisle).flat();
+  const total = allItems.length;
+  const done = allItems.filter(i=>checked.has(i.key)).length;
   const chips = [...cart].map(id=>{
     const r=RECIPES.find(x=>x.id===id);
     return `<span class="chip">${r.emoji} ${r.name}<button onclick="toggleCart('${id}')" aria-label="retirer">✕</button></span>`;
   }).join("");
   let html = `<div class="list-head">
       <div><div class="subhd" style="margin:0 0 4px">Liste de courses</div><div class="progress">${done}/${total} cochés</div></div>
-      <button class="clearall" onclick="clearChecks()">Tout décocher</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="clearall" onclick="toggleHideChecked()">${hideChecked?"Afficher cochés":"Masquer cochés"}</button>
+        <button class="clearall" onclick="clearChecks()">Tout décocher</button>
+      </div>
     </div>
     <div class="chips">${chips}</div>`;
   AISLE_ORDER.filter(a=>byAisle[a]).forEach(a=>{
-    const items = byAisle[a].sort((x,y)=>x.item.localeCompare(y.item));
+    const items = byAisle[a].filter(i=>!(hideChecked && checked.has(i.key))).sort((x,y)=>x.item.localeCompare(y.item));
+    if(!items.length) return;
     html += `<div class="aisle"><h3>${a}</h3>`;
     items.forEach(i=>{
       const on = checked.has(i.key);
-      html += `<div class="check ${on?'on':''}" onclick="toggleCheck('${i.key}')">
+      const legacy = JSON.stringify([...i.units.keys()].map(u=>i.key+"__"+u));
+      html += `<div class="check ${on?'on':''}" data-key="${esc(i.key)}" data-legacy="${esc(legacy)}" onclick="toggleCheckEl(this)">
         <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2B22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span>
         <span class="name">${i.item}</span>
-        <span class="qty">${qtyText(i.qty,i.unit)}</span>
+        <span class="qty">${qtyMerged(i.units)}</span>
       </div>`;
     });
     html += `</div>`;
   });
+  if(hideChecked && total>0 && done===total){
+    html += `<div class="empty" style="padding:24px 0"><p>Tout est coché ✅</p></div>`;
+  }
   host.innerHTML = html;
 }
-function toggleCheck(key){ const on=!checked.has(key); on?checked.add(key):checked.delete(key); renderCart(); on?dbCheck(key):dbUncheck(key); }
+function toggleCheckEl(el){
+  const key = el.dataset.key;
+  let legacy=[]; try{ legacy = JSON.parse(el.dataset.legacy||"[]"); }catch(e){}
+  toggleCheck(key, legacy);
+}
+function toggleCheck(key, legacy){ const on=!checked.has(key); on?checked.add(key):checked.delete(key); renderCart(); on?dbCheck(key):dbUncheck(key, legacy||[]); }
+function toggleHideChecked(){ hideChecked=!hideChecked; try{ localStorage.setItem("hideChecked", hideChecked?"1":"0"); }catch(e){} renderCart(); }
 function clearChecks(){ checked.clear(); renderCart(); dbClearChecks(); }
 
 /* ---- views ---- */
@@ -560,7 +582,7 @@ async function dbAddCart(id){ if(!SHARED)return; try{ await supa.from("cart").up
 async function dbDelCart(id){ if(!SHARED)return; try{ await supa.from("cart").delete().eq("list_id",LIST).eq("recipe_id",id); }catch(e){console.warn(e);} }
 async function dbServings(id){ if(!SHARED||!cart.has(id))return; try{ await supa.from("cart").update({servings:sel.get(id)}).eq("list_id",LIST).eq("recipe_id",id); }catch(e){console.warn(e);} }
 async function dbCheck(key){ if(!SHARED)return; try{ await supa.from("checks").upsert({list_id:LIST,item_key:key}); }catch(e){console.warn(e);} }
-async function dbUncheck(key){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST).eq("item_key",key); }catch(e){console.warn(e);} }
+async function dbUncheck(key, legacy){ if(!SHARED)return; try{ const keys=[key,...((legacy||[]))]; await supa.from("checks").delete().eq("list_id",LIST).in("item_key",keys); }catch(e){console.warn(e);} }
 async function dbClearChecks(){ if(!SHARED)return; try{ await supa.from("checks").delete().eq("list_id",LIST); }catch(e){console.warn(e);} }
 async function dbSetImage(id,url){ if(!SHARED)return; try{ await supa.from("recipe_images").upsert({recipe_id:id,url,updated_at:new Date().toISOString()}); }catch(e){console.warn(e);} }
 async function dbDelImage(id){ if(!SHARED)return; try{ await supa.from("recipe_images").delete().eq("recipe_id",id); }catch(e){console.warn(e);} }
@@ -614,7 +636,7 @@ async function pullState(){
     cart.clear();
     (c.data||[]).forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); });
     checked.clear();
-    (k.data||[]).forEach(r=>checked.add(r.item_key));
+    (k.data||[]).forEach(r=>{ const kk=String(r.item_key); checked.add(kk.split("__")[0]); }); // migration : ancienne clé "nom__unité" → nouvelle clé "nom"
     overrides.clear();
     (im.data||[]).forEach(r=>overrides.set(r.recipe_id, r.url));
     ratings.clear();
