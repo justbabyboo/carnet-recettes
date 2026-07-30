@@ -367,5 +367,70 @@ window.RECIPES = [
       "Ajoute le yaourt grec, le jus de citron, un filet d'huile d'olive, la fleur de sel, le poivre et le zaatar. Mélange bien pour tout enrober.",
       "Incorpore la moitié de la feta émiettée, puis parsème le reste sur le dessus. Termine par un peu de zaatar, quelques feuilles de menthe et un tour de poivre. Sers frais."
     ]
+  },
+  {
+    id:"gyros-pleurotes", name:"Gyros de pleurotes", emoji:"🥙",
+    image:"images/gyros-pleurotes.jpg", servings:4, temps:80, tags:["végé","four","grec"],
+    ingredients:[
+      {item:"pleurotes", qty:200, unit:"g", cat:"Légumes"},
+      {item:"champignons de Paris", qty:100, unit:"g", cat:"Légumes"},
+      {item:"oignon rouge", qty:1.5, unit:"", cat:"Légumes"},
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"tomates", qty:2, unit:"", cat:"Légumes"},
+      {item:"salade (laitue)", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"ail", qty:4, unit:"gousses", cat:"Légumes"},
+      {item:"aneth", qty:0.5, unit:"bouquet", cat:"Herbes"},
+      {item:"menthe fraîche", qty:10, unit:"feuilles", cat:"Herbes"},
+      {item:"citron", qty:2, unit:"", cat:"Fruits"},
+      {item:"yaourt grec", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"pitas", qty:4, unit:"", cat:"Boulangerie"},
+      {item:"frites (surgelées)", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sauce soja", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"origan séché", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"paprika fumé", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"cumin", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"fleur de sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 180°C (th. 6).",
+      "Marinade : épluche et presse 3 gousses d'ail, puis mélange dans un saladier avec la sauce soja, le jus d'½ citron, l'origan, le paprika fumé, le cumin, 1 c.s. d'eau et 5 c.s. d'huile d'olive.",
+      "Légumes rôtis : effiloche les pleurotes en lanières à la main, coupe les champignons en quatre, émince l'oignon rouge. Mets champignons et oignon dans la marinade et mélange bien.",
+      "Étale les légumes sur une plaque et enfourne à mi-hauteur 20 min.",
+      "Tzatziki : râpe le concombre et presse-le pour retirer l'eau. Presse 1 grosse gousse d'ail, hache l'aneth et la menthe. Mélange avec le yaourt grec, 2 c.s. de jus de citron, 3 c.s. d'huile d'olive et une pincée de fleur de sel. Laisse reposer au frais au moins 30 min.",
+      "Assemble : garnis chaque pita de salade, tomates et oignon rouge, ajoute les pleurotes rôties et quelques cuillerées de tzatziki. Sers avec des frites."
+    ]
+  },
+  {
+    id:"nuggets-chou-fleur", name:"Nuggets de chou-fleur façon fish & chips", emoji:"🍤",
+    image:"images/nuggets-chou-fleur.jpg", servings:4, temps:75, tags:["vegan","friture"],
+    ingredients:[
+      {item:"chou-fleur", qty:500, unit:"g", cat:"Légumes"},
+      {item:"pommes de terre", qty:500, unit:"g", cat:"Légumes"},
+      {item:"oignon rouge", qty:0.5, unit:"", cat:"Légumes"},
+      {item:"ciboulette", qty:0, unit:"", cat:"Herbes"},
+      {item:"yaourt", qty:150, unit:"g", cat:"Crèmerie"},
+      {item:"lait", qty:50, unit:"ml", cat:"Crèmerie"},
+      {item:"farine", qty:200, unit:"g", cat:"Épicerie"},
+      {item:"bière", qty:250, unit:"ml", cat:"Épicerie"},
+      {item:"cornichons", qty:4, unit:"", cat:"Épicerie"},
+      {item:"câpres", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"moutarde", qty:2, unit:"c.c.", cat:"Épicerie"},
+      {item:"feuille de nori", qty:1, unit:"", cat:"Épicerie"},
+      {item:"miso blanc", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"bicarbonate de soude", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"ail en poudre", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"paprika fumé", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile de friture", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 200°C (th. 6-7). Coupe les pommes de terre en deux, dépose-les sur une plaque, arrose d'huile d'olive et de sel, mélange et enfourne 30 min.",
+      "Sauce : hache l'oignon rouge, les cornichons et les câpres (au mixeur ou au couteau), hache la ciboulette. Mélange le tout avec la moutarde et le yaourt.",
+      "Nuggets : détaille le chou-fleur en fleurettes et cuis-les 10 min à la vapeur. Réserve. Dans un saladier, mélange la farine, le bicarbonate, l'ail en poudre, le paprika, le sel et la feuille de nori émiettée. Ajoute le miso, la bière et le lait, puis mélange jusqu'à une pâte lisse.",
+      "Chauffe l'huile de friture. Trempe les fleurettes dans la pâte à beignets, plonge-les dans l'huile et laisse dorer sur toutes les faces.",
+      "Sers les nuggets avec les pommes de terre au four et la sauce."
+    ]
   }
 ];
