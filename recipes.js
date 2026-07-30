@@ -432,5 +432,52 @@ window.RECIPES = [
       "Chauffe l'huile de friture. Trempe les fleurettes dans la pâte à beignets, plonge-les dans l'huile et laisse dorer sur toutes les faces.",
       "Sers les nuggets avec les pommes de terre au four et la sauce."
     ]
+  },
+  {
+    id:"gratin-haricots-mozza", name:"Gratin de haricots aux tomates & mozzarella", emoji:"🧀",
+    image:"images/gratin-haricots-mozza.jpg", servings:4, temps:40, tags:["végé","gratin","four"],
+    ingredients:[
+      {item:"tomates", qty:2, unit:"", cat:"Légumes"},
+      {item:"ail", qty:3, unit:"gousses", cat:"Légumes"},
+      {item:"basilic frais", qty:1, unit:"poignée", cat:"Herbes"},
+      {item:"mozzarella râpée", qty:200, unit:"g", cat:"Crèmerie"},
+      {item:"haricots blancs cuits", qty:400, unit:"g", cat:"Épicerie"},
+      {item:"concentré de tomate", qty:70, unit:"g", cat:"Épicerie"},
+      {item:"paprika doux", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"origan séché", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"thym", qty:0.5, unit:"c.c.", cat:"Épicerie"},
+      {item:"pain (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Épluche et hache l'ail, détaille les tomates en dés. Préchauffe le four à 210°C (th. 7).",
+      "Dans une poêle (idéalement qui va au four), fais revenir l'ail et les tomates dans 3 c.s. d'huile d'olive pendant 5 min.",
+      "Ajoute le concentré de tomate, les haricots blancs, le paprika, l'origan et le thym ; poursuis 5 min en écrasant un peu les haricots à la spatule. Ajoute le basilic, sale, poivre et mélange.",
+      "Si besoin transvase dans un plat à four, puis répartis la mozzarella râpée par-dessus.",
+      "Enfourne 15 min ; si la mozzarella n'est pas assez gratinée, passe sous le gril quelques minutes. Sers avec des tranches de pain grillées."
+    ]
+  },
+  {
+    id:"caviar-aubergines-tahini", name:"Caviar d'aubergines au tahini", emoji:"🍆",
+    image:"images/caviar-aubergines-tahini.jpg", servings:4, temps:60, tags:["vegan","four","sans cuisson"],
+    ingredients:[
+      {item:"aubergines", qty:2, unit:"", cat:"Légumes"},
+      {item:"oignon nouveau", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"persil plat", qty:1, unit:"botte", cat:"Herbes"},
+      {item:"tahini", qty:3, unit:"c.s.", cat:"Épicerie"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Préchauffe le four à 200°C (th. 6-7). Lave les aubergines et pique la peau à la fourchette.",
+      "Enfourne-les sur une plaque 50 min. En fin de cuisson, tu peux allumer le gril pour faire griller la peau quelques minutes.",
+      "Épluche les aubergines et mets la chair dans un mixeur avec l'oignon nouveau, l'ail, 2 c.s. de jus de citron, 4 c.s. d'huile d'olive, le tahini, le cumin, le persil et du sel. Mixe jusqu'à une consistance lisse et légèrement mousseuse. Ajuste l'assaisonnement.",
+      "Laisse reposer au moins 1 h au frais. Sers avec des pitas, du pain ou des crudités (délicieux aussi en sandwich)."
+    ]
   }
 ];
