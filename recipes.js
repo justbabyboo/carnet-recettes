@@ -766,5 +766,53 @@ window.RECIPES = [
       "Étale la pâte feuilletée sur une plaque, répartis la ricotta dessus, dispose les rondelles de courgette et verse un filet d'huile d'olive.",
       "Enfourne 25 min. À la sortie, dépose la burrata au centre, ajoute un filet de vinaigre balsamique, de la fleur de sel et le basilic restant. Déguste tiède ou froid."
     ]
+  },
+  {
+    id:"salsa-tomates-gingembre", name:"Salsa de tomates, coriandre & gingembre", emoji:"🌶️",
+    image:"images/salsa-tomates-gingembre.jpg", servings:4, temps:10, tags:["vegan","sans cuisson"],
+    ingredients:[
+      {item:"tomates bien mûres", qty:500, unit:"g", cat:"Légumes"},
+      {item:"gingembre frais", qty:15, unit:"g", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
+      {item:"coriandre fraîche", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"citron vert", qty:0.5, unit:"", cat:"Fruits"},
+      {item:"vinaigre", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"sucre", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"tortillas (pour servir)", qty:0, unit:"", cat:"Boulangerie"},
+    ],
+    steps:[
+      "Coupe les tomates en tout petits dés. Pèle le gingembre, l'ail et l'oignon.",
+      "Passe le gingembre, l'ail et l'oignon au mixeur avec la coriandre et le jus de citron vert.",
+      "Assemble tous les ingrédients dans un grand bol avec le vinaigre, le sucre et le sel.",
+      "Laisse reposer 1 à 2 h au frais pour développer les saveurs. À déguster avec des tortillas !"
+    ]
+  },
+  {
+    id:"tomates-farcies-riz", name:"Tomates farcies au riz & herbes fraîches", emoji:"🍅",
+    image:"images/tomates-farcies-riz.jpg", servings:4, temps:100, tags:["vegan","four","grec"],
+    ingredients:[
+      {item:"tomates (grosses)", qty:5, unit:"", cat:"Légumes"},
+      {item:"poivrons", qty:4, unit:"", cat:"Légumes"},
+      {item:"oignons jaunes", qty:2, unit:"", cat:"Légumes"},
+      {item:"pommes de terre", qty:2, unit:"", cat:"Légumes"},
+      {item:"menthe fraîche", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"persil plat", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"aneth", qty:1, unit:"bouquet", cat:"Herbes"},
+      {item:"riz rond", qty:250, unit:"g", cat:"Épicerie"},
+      {item:"huile d'olive", qty:200, unit:"ml", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Coupe les capuchons des poivrons et des tomates (réserve-les). Retire les pépins des poivrons et évide les tomates.",
+      "Effeuille la menthe, retire les grosses tiges du persil et de l'aneth (garde les tiges tendres).",
+      "Mixe longuement la chair des tomates avec les oignons épluchés et les herbes.",
+      "Verse dans un grand bol, ajoute l'huile d'olive, 100 ml d'eau, le riz, sel et poivre, mélange bien.",
+      "Préchauffe le four à 210°C (th. 7). Farcis les légumes de ce mélange, replace les capuchons et pose-les dans un grand plat.",
+      "Coupe les pommes de terre en grosses frites et répartis-les au fond du plat (elles absorbent l'eau rendue). Arrose d'un filet d'huile d'olive.",
+      "Enfourne 15 min, puis baisse à 190°C (th. 6-7) et poursuis 1 h. Encore meilleur dégusté le lendemain !"
+    ]
   }
 ];
