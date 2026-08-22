@@ -386,6 +386,7 @@ function toggleCart(id){
   b.classList.toggle("in", cart.has(id));
   b.innerHTML = `<span class="ic">${cart.has(id)?'✓':'+'}</span>${cart.has(id)?'Ajouté':'Courses'}`;
   updateCount(); if(view==="cart") renderCart();
+  saveCartLocal();
   cart.has(id) ? dbAddCart(id) : dbDelCart(id);
 }
 function bump(id,d){
@@ -402,6 +403,7 @@ function bump(id,d){
     }
   }
   if(view==="cart") renderCart();
+  saveCartLocal();
   dbServings(id);
 }
 function updateCount(){
@@ -612,14 +614,19 @@ function delManual(id){
 }
 function saveManualLocal(){ try{ localStorage.setItem("manual_"+LIST, JSON.stringify(MANUAL)); }catch(e){} }
 function loadManualLocal(){ try{ const s=localStorage.getItem("manual_"+LIST); if(s){ const a=JSON.parse(s); if(Array.isArray(a)) MANUAL=a; } }catch(e){} }
+/* ---- sauvegarde locale (filet de sécurité contre la perte de liste) ---- */
+function saveCartLocal(){ try{ localStorage.setItem("cart_"+LIST, JSON.stringify([...cart].map(id=>[id, sel.get(id)||0]))); }catch(e){} }
+function loadCartLocal(){ try{ const s=localStorage.getItem("cart_"+LIST); if(s){ const a=JSON.parse(s); if(Array.isArray(a)){ cart.clear(); a.forEach(x=>{ const id=Array.isArray(x)?x[0]:x, sv=Array.isArray(x)?x[1]:0; if(id){ cart.add(id); if(sv) sel.set(id,sv); } }); } } }catch(e){} }
+function saveChecksLocal(){ try{ localStorage.setItem("checks_"+LIST, JSON.stringify([...checked])); }catch(e){} }
+function loadChecksLocal(){ try{ const s=localStorage.getItem("checks_"+LIST); if(s){ const a=JSON.parse(s); if(Array.isArray(a)){ checked.clear(); a.forEach(k=>checked.add(k)); } } }catch(e){} }
 function toggleCheckEl(el){
   const key = el.dataset.key;
   let legacy=[]; try{ legacy = JSON.parse(el.dataset.legacy||"[]"); }catch(e){}
   toggleCheck(key, legacy);
 }
-function toggleCheck(key, legacy){ const on=!checked.has(key); on?checked.add(key):checked.delete(key); renderCart(); on?dbCheck(key):dbUncheck(key, legacy||[]); }
+function toggleCheck(key, legacy){ const on=!checked.has(key); on?checked.add(key):checked.delete(key); saveChecksLocal(); renderCart(); on?dbCheck(key):dbUncheck(key, legacy||[]); }
 function toggleHideChecked(){ hideChecked=!hideChecked; try{ localStorage.setItem("hideChecked", hideChecked?"1":"0"); }catch(e){} renderCart(); }
-function clearChecks(){ checked.clear(); renderCart(); dbClearChecks(); }
+function clearChecks(){ checked.clear(); saveChecksLocal(); renderCart(); dbClearChecks(); }
 
 /* ---- views ---- */
 function setView(v){
@@ -701,16 +708,20 @@ async function pullState(){
       supa.from("recipe_ratings").select("recipe_id,stars"),
       supa.from("recipe_comments").select("id,recipe_id,author,body,created_at").order("created_at",{ascending:true})
     ]);
-    cart.clear();
-    (c.data||[]).forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); });
-    checked.clear();
-    (k.data||[]).forEach(r=>{ const kk=String(r.item_key); checked.add(kk.split("__")[0]); }); // migration : ancienne clé "nom__unité" → nouvelle clé "nom"
-    overrides.clear();
-    (im.data||[]).forEach(r=>overrides.set(r.recipe_id, r.url));
-    ratings.clear();
-    (ra.data||[]).forEach(r=>ratings.set(r.recipe_id, r.stars));
-    comments.clear();
-    (cm.data||[]).forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); });
+    // IMPORTANT : supabase-js ne "throw" PAS sur erreur de lecture (il renvoie {error}).
+    // On ne remplace donc l'état QUE si la lecture a réussi ET renvoyé des données.
+    // Si Supabase revient vide alors qu'on a des données locales → auto-réparation (on re-pousse).
+    if(!c.error && Array.isArray(c.data)){
+      if(c.data.length){ cart.clear(); c.data.forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); }); saveCartLocal(); }
+      else if(cart.size){ for(const id of cart) dbAddCart(id); }   // panier local non vide, Supabase vide → on répare
+    }
+    if(!k.error && Array.isArray(k.data)){
+      if(k.data.length){ checked.clear(); k.data.forEach(r=>{ const kk=String(r.item_key); checked.add(kk.split("__")[0]); }); saveChecksLocal(); } // migration "nom__unité" → "nom"
+      else if(checked.size){ for(const key of checked) dbCheck(key); }  // coches locales non vides, Supabase vide → on répare
+    }
+    if(!im.error && Array.isArray(im.data)){ overrides.clear(); im.data.forEach(r=>overrides.set(r.recipe_id, r.url)); }
+    if(!ra.error && Array.isArray(ra.data)){ ratings.clear(); ra.data.forEach(r=>ratings.set(r.recipe_id, r.stars)); }
+    if(!cm.error && Array.isArray(cm.data)){ comments.clear(); cm.data.forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); }); }
     // articles manuels : chargés à part pour ne pas casser le reste si la table n'existe pas encore
     try{
       const mi = await supa.from("manual_items").select("id,item,cat").eq("list_id",LIST);
@@ -722,7 +733,7 @@ async function pullState(){
   pulling=false;
 }
 
-loadManualLocal();
+loadCartLocal(); loadChecksLocal(); loadManualLocal();   // affichage immédiat depuis le local (survit au rechargement)
 renderFilters(); renderGrid(); updateCount(); showStatus();
 if(SHARED){
   pullState();
@@ -732,8 +743,13 @@ if(SHARED){
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_images"}, pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_ratings"}, pullState)
     .on("postgres_changes",{event:"*",schema:"public",table:"recipe_comments"}, pullState)
-    .on("postgres_changes",{event:"*",schema:"public",table:"manual_items"}, pullState)
     .subscribe();
+  // canal séparé pour manual_items : si la table n'existe pas encore, ça ne casse pas le canal principal
+  try{
+    supa.channel("carnet-manual-"+LIST)
+      .on("postgres_changes",{event:"*",schema:"public",table:"manual_items"}, pullState)
+      .subscribe();
+  }catch(e){ /* table absente : ignoré */ }
 }</script>
 </body>
 </html>
