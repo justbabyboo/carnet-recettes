@@ -1,5 +1,5 @@
 -- =========================================================
--- Carnet d'été — table des articles ajoutés à la main
+-- Carnet de recettes — table des articles ajoutés à la main
 -- (courses hors recettes : hygiène, maison, boissons, etc.)
 -- À exécuter UNE fois dans Supabase → SQL Editor.
 -- Ré-exécutable sans erreur.

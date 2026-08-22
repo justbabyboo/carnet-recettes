@@ -1,4 +1,4 @@
-# Ajouter une recette au Carnet d'été
+# Ajouter une recette au Carnet de recettes
 
 Le site est statique (GitHub → Netlify). **Toutes les recettes vivent dans `recipes.js`.**
 On ne touche jamais à `index.html` (c'est l'app, pas les données).
