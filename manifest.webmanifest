@@ -1,6 +1,6 @@
 {
-  "name": "Carnet d'été — Recettes C&M",
-  "short_name": "Recettes C&M",
+  "name": "Carnet de recettes — C&M",
+  "short_name": "Carnet C&M",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#FBFAF6",
