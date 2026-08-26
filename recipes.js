@@ -844,5 +844,28 @@ window.RECIPES = [
       "Beurre épicé (finition) : fais chauffer 2 c.s. d'huile d'olive avec du paprika, un peu de pul biber et de la menthe séchée jusqu'à ce que ça mousse, puis verse en filet sur la soupe.",
       "Sers bien chaud avec des quartiers de citron à presser, et du pain. Afiyet olsun !"
     ]
+  },
+  {
+    id:"tzatziki", name:"Tzatziki", emoji:"🥒",
+    image:"images/tzatziki.jpg", servings:4, temps:20, tags:["végé","grec","sans cuisson"],
+    ingredients:[
+      {item:"concombre", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"aneth", qty:0.5, unit:"botte", cat:"Herbes"},
+      {item:"menthe fraîche (option)", qty:0, unit:"", cat:"Herbes"},
+      {item:"yaourt grec", qty:400, unit:"g", cat:"Crèmerie"},
+      {item:"citron", qty:0.5, unit:"", cat:"Fruits"},
+      {item:"vinaigre de vin blanc", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Râpe le concombre (avec la peau), sale-le légèrement et laisse-le dégorger 10-15 min dans une passoire.",
+      "Presse fortement le concombre entre tes mains ou dans un torchon pour retirer un maximum d'eau — c'est LE secret d'un tzatziki épais et pas liquide.",
+      "Écrase l'ail en purée et cisèle l'aneth (et la menthe si tu en mets).",
+      "Mélange le yaourt grec avec le concombre pressé, l'ail, l'aneth, un filet d'huile d'olive, le vinaigre, un trait de jus de citron, du sel et du poivre.",
+      "Laisse reposer au moins 1 h au frais pour que les saveurs se développent. Sers frais avec du pain pita, en mezze, ou pour accompagner légumes et grillades."
+    ]
   }
 ];
