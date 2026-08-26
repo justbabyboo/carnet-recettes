@@ -814,5 +814,35 @@ window.RECIPES = [
       "Coupe les pommes de terre en grosses frites et répartis-les au fond du plat (elles absorbent l'eau rendue). Arrose d'un filet d'huile d'olive.",
       "Enfourne 15 min, puis baisse à 190°C (th. 6-7) et poursuis 1 h. Encore meilleur dégusté le lendemain !"
     ]
+  },
+  {
+    id:"mercimek-corbasi", name:"Mercimek çorbası (soupe de lentilles corail)", emoji:"🍲",
+    image:"images/mercimek-corbasi.jpg", servings:4, temps:40, tags:["vegan","soupe","mijoté"],
+    ingredients:[
+      {item:"lentilles corail", qty:250, unit:"g", cat:"Épicerie"},
+      {item:"oignon jaune", qty:1, unit:"", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"pomme de terre", qty:1, unit:"", cat:"Légumes"},
+      {item:"ail", qty:2, unit:"gousses", cat:"Légumes"},
+      {item:"concentré de tomate", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"concentré de piment (biber salçası)", qty:1, unit:"c.c.", cat:"Épicerie"},
+      {item:"bouillon de légumes", qty:1.2, unit:"l", cat:"Épicerie"},
+      {item:"citron", qty:1, unit:"", cat:"Fruits"},
+      {item:"cumin", qty:0, unit:"", cat:"Épicerie"},
+      {item:"paprika", qty:0, unit:"", cat:"Épicerie"},
+      {item:"flocons de piment (pul biber)", qty:0, unit:"", cat:"Épicerie"},
+      {item:"menthe séchée", qty:0, unit:"", cat:"Épicerie"},
+      {item:"huile d'olive", qty:0, unit:"", cat:"Épicerie"},
+      {item:"sel", qty:0, unit:"", cat:"Épicerie"},
+      {item:"poivre", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Émince l'oignon et fais-le fondre dans un filet d'huile d'olive avec la carotte et la pomme de terre coupées en dés, 5 min.",
+      "Ajoute l'ail écrasé, le concentré de tomate, le concentré de piment et le cumin ; fais revenir 1-2 min pour développer les arômes.",
+      "Verse les lentilles corail rincées et le bouillon. Porte à ébullition, écume, puis laisse mijoter 25-30 min à couvert jusqu'à ce que les lentilles et les légumes soient bien tendres.",
+      "Mixe la soupe jusqu'à une texture lisse et veloutée. Rallonge avec un peu d'eau/bouillon si tu la préfères plus fluide, puis sale et poivre.",
+      "Beurre épicé (finition) : fais chauffer 2 c.s. d'huile d'olive avec du paprika, un peu de pul biber et de la menthe séchée jusqu'à ce que ça mousse, puis verse en filet sur la soupe.",
+      "Sers bien chaud avec des quartiers de citron à presser, et du pain. Afiyet olsun !"
+    ]
   }
 ];
