@@ -272,6 +272,7 @@ let openId = null;            // recette actuellement ouverte dans la fiche
 let view = "recipes";
 let hideChecked = false; try{ hideChecked = localStorage.getItem("hideChecked")==="1"; }catch(e){}
 let MANUAL = [];   // articles ajoutés à la main : {id, item, cat}
+let syncState = "connecting";   // "connecting" | "ok" | "offline" — état réel de la synchro partagée
 
 /* ---- helpers ---- */
 const $ = s => document.querySelector(s);
@@ -650,8 +651,10 @@ const LIST = CONFIG.list || "carnet";
 
 function showStatus(){
   const el = $("#sync-status"); if(!el) return;
-  el.textContent = SHARED ? "● Liste partagée en direct" : "○ Liste locale";
-  el.className = SHARED ? "sync on" : "sync";
+  if(!SHARED){ el.textContent = "○ Liste locale (non partagée)"; el.className = "sync"; return; }
+  if(syncState==="ok"){ el.textContent = "● Liste partagée en direct"; el.className = "sync on"; }
+  else if(syncState==="offline"){ el.textContent = "⚠ Hors-ligne — liste non synchronisée"; el.className = "sync"; }
+  else { el.textContent = "… Connexion à la liste partagée"; el.className = "sync"; }
 }
 
 async function dbAddCart(id){ if(!SHARED)return; try{ await supa.from("cart").upsert({list_id:LIST,recipe_id:id,servings:sel.get(id)||4}); }catch(e){console.warn(e);} }
@@ -723,9 +726,11 @@ async function pullState(){
       const mi = await supa.from("manual_items").select("id,item,cat").eq("list_id",LIST);
       if(mi && !mi.error && Array.isArray(mi.data)){ MANUAL = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat})); saveManualLocal(); }
     }catch(e){ /* table manual_items absente : on garde la version locale */ }
-    renderGrid(); updateCount(); if(view==="cart") renderCart();
+    // état de synchro réel : vert seulement si les lectures partagées ont réussi
+    syncState = (!c.error && !k.error) ? "ok" : "offline";
+    renderGrid(); updateCount(); showStatus(); if(view==="cart") renderCart();
     if(openId){ renderRating(openId); renderComments(openId); }
-  }catch(e){ console.warn(e); }
+  }catch(e){ console.warn(e); syncState="offline"; showStatus(); }
   pulling=false;
 }
 
