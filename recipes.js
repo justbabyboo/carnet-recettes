@@ -867,5 +867,31 @@ window.RECIPES = [
       "Mélange le yaourt grec avec le concombre pressé, l'ail, l'aneth, un filet d'huile d'olive, le vinaigre, un trait de jus de citron, du sel et du poivre.",
       "Laisse reposer au moins 1 h au frais pour que les saveurs se développent. Sers frais avec du pain pita, en mezze, ou pour accompagner légumes et grillades."
     ]
+  },
+  {
+    id:"nouilles-haricots-verts", name:"Nouilles sautées aux haricots verts", emoji:"🍜",
+    servings:4, temps:30, tags:["végé","poêle","asiatique"],
+    ingredients:[
+      {item:"nouilles", qty:250, unit:"g", cat:"Épicerie"},
+      {item:"échalote", qty:1, unit:"", cat:"Légumes"},
+      {item:"carotte", qty:1, unit:"", cat:"Légumes"},
+      {item:"haricots verts", qty:250, unit:"g", cat:"Légumes"},
+      {item:"cébettes (oignons nouveaux)", qty:3, unit:"", cat:"Légumes"},
+      {item:"œufs", qty:2, unit:"", cat:"Crèmerie"},
+      {item:"huile neutre", qty:2, unit:"c.s.", cat:"Épicerie"},
+      {item:"sauce soja", qty:6, unit:"c.s.", cat:"Épicerie"},
+      {item:"huile de sésame", qty:2, unit:"c.s.", cat:"Épicerie"},
+      {item:"sucre en poudre", qty:1, unit:"c.s.", cat:"Épicerie"},
+      {item:"vinaigre de riz", qty:4, unit:"c.s.", cat:"Épicerie"},
+      {item:"piment (selon les goûts)", qty:0, unit:"", cat:"Épicerie"},
+    ],
+    steps:[
+      "Mélange tous les ingrédients de la sauce dans un bol. Réserve.",
+      "Fais cuire les nouilles selon les instructions du paquet. Égoutte-les et réserve-les dans un grand volume d'eau froide.",
+      "Épluche et émince l'échalote dans la longueur. Épluche et détaille la carotte en julienne (tu peux la râper pour aller plus vite). Équeute les haricots verts puis coupe-les en deux. Détaille les cébettes en tronçons d'environ 2 à 3 cm.",
+      "Fais chauffer un wok, verse l'huile et fais revenir l'échalote et la carotte. Après quelques minutes, ajoute les haricots verts et la partie blanche des cébettes. Fais-les revenir 5 min.",
+      "Bats les œufs en omelette, pousse les légumes dans un coin du wok, puis verse les œufs de l'autre côté. Brouille les œufs, puis mélange-les avec les légumes.",
+      "Égoutte les nouilles et ajoute-les au wok avec la sauce. Fais revenir 5 min. Ajoute le vert des cébettes et mélange."
+    ]
   }
 ];
