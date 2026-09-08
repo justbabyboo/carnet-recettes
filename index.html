@@ -708,17 +708,10 @@ async function pullState(){
       supa.from("recipe_ratings").select("recipe_id,stars"),
       supa.from("recipe_comments").select("id,recipe_id,author,body,created_at").order("created_at",{ascending:true})
     ]);
-    // IMPORTANT : supabase-js ne "throw" PAS sur erreur de lecture (il renvoie {error}).
-    // On ne remplace donc l'état QUE si la lecture a réussi ET renvoyé des données.
-    // Si Supabase revient vide alors qu'on a des données locales → auto-réparation (on re-pousse).
-    if(!c.error && Array.isArray(c.data)){
-      if(c.data.length){ cart.clear(); c.data.forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); }); saveCartLocal(); }
-      else if(cart.size){ for(const id of cart) dbAddCart(id); }   // panier local non vide, Supabase vide → on répare
-    }
-    if(!k.error && Array.isArray(k.data)){
-      if(k.data.length){ checked.clear(); k.data.forEach(r=>{ const kk=String(r.item_key); checked.add(kk.split("__")[0]); }); saveChecksLocal(); } // migration "nom__unité" → "nom"
-      else if(checked.size){ for(const key of checked) dbCheck(key); }  // coches locales non vides, Supabase vide → on répare
-    }
+    // Supabase fait AUTORITÉ quand la lecture réussit (même vide) → les 2 appareils convergent.
+    // On ne conserve le local QUE si la lecture a échoué (erreur réseau), pour ne pas vider l'écran.
+    if(!c.error && Array.isArray(c.data)){ cart.clear(); c.data.forEach(r=>{ cart.add(r.recipe_id); sel.set(r.recipe_id, r.servings); }); saveCartLocal(); }
+    if(!k.error && Array.isArray(k.data)){ checked.clear(); k.data.forEach(r=>{ checked.add(String(r.item_key).split("__")[0]); }); saveChecksLocal(); }
     if(!im.error && Array.isArray(im.data)){ overrides.clear(); im.data.forEach(r=>overrides.set(r.recipe_id, r.url)); }
     if(!ra.error && Array.isArray(ra.data)){ ratings.clear(); ra.data.forEach(r=>ratings.set(r.recipe_id, r.stars)); }
     if(!cm.error && Array.isArray(cm.data)){ comments.clear(); cm.data.forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); }); }
@@ -750,6 +743,9 @@ if(SHARED){
       .on("postgres_changes",{event:"*",schema:"public",table:"manual_items"}, pullState)
       .subscribe();
   }catch(e){ /* table absente : ignoré */ }
+  // re-synchronise dès que l'app revient au premier plan (essentiel entre 2 téléphones)
+  document.addEventListener("visibilitychange",()=>{ if(!document.hidden) pullState(); });
+  window.addEventListener("focus", pullState);
 }</script>
 </body>
 </html>
