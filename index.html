@@ -574,11 +574,14 @@ function renderCart(){
     items.forEach(i=>{
       const on = checked.has(i.key);
       const legacy = JSON.stringify([...i.units.keys()].map(u=>i.key+"__"+u));
-      const del = i.manual ? ` <button onclick="event.stopPropagation();delManual('${i.mid}')" aria-label="supprimer" style="border:none;background:none;color:#b23;cursor:pointer;font-size:13px;padding:0 2px">✕</button>` : ``;
+      const tag = i.manual ? ` <span style="font-size:11px;color:#9a9f96;font-weight:600;text-transform:uppercase;letter-spacing:.04em">· ajouté</span>` : ``;
+      const right = i.manual
+        ? `<button onclick="event.stopPropagation();delManual('${i.mid}')" aria-label="Supprimer ${esc(i.item)}" title="Supprimer" style="margin-left:auto;border:none;background:none;color:#b23;cursor:pointer;font-size:18px;line-height:1;padding:8px 4px 8px 14px">✕</button>`
+        : `<span class="qty">${qtyMerged(i.units)}</span>`;
       html += `<div class="check ${on?'on':''}" data-key="${esc(i.key)}" data-legacy="${esc(legacy)}" onclick="toggleCheckEl(this)">
         <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="#1A2B22" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span>
-        <span class="name">${i.item}${del}</span>
-        <span class="qty">${qtyMerged(i.units)}</span>
+        <span class="name">${i.item}${tag}</span>
+        ${right}
       </div>`;
     });
     html += `</div>`;
