@@ -721,18 +721,11 @@ async function pullState(){
     if(!im.error && Array.isArray(im.data)){ overrides.clear(); im.data.forEach(r=>overrides.set(r.recipe_id, r.url)); }
     if(!ra.error && Array.isArray(ra.data)){ ratings.clear(); ra.data.forEach(r=>ratings.set(r.recipe_id, r.stars)); }
     if(!cm.error && Array.isArray(cm.data)){ comments.clear(); cm.data.forEach(r=>{ const a=comments.get(r.recipe_id)||[]; a.push(r); comments.set(r.recipe_id, a); }); }
-    // articles manuels : chargés à part pour ne pas casser le reste si la table n'existe pas encore
+    // articles manuels : Supabase fait autorité quand la lecture réussit
+    // (pas de re-push, sinon une suppression faite sur un appareil serait "ressuscitée" par l'autre).
     try{
       const mi = await supa.from("manual_items").select("id,item,cat").eq("list_id",LIST);
-      if(mi && !mi.error && Array.isArray(mi.data)){
-        const remote = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat}));
-        const remoteIds = new Set(remote.map(x=>x.id));
-        // fusion : pousse vers Supabase les articles encore uniquement locaux (rien n'est perdu)
-        const localOnly = MANUAL.filter(m=>m && m.id && !remoteIds.has(m.id));
-        localOnly.forEach(m=>dbAddManual(m.id, m.item, m.cat));
-        MANUAL = remote.concat(localOnly);
-        saveManualLocal();
-      }
+      if(mi && !mi.error && Array.isArray(mi.data)){ MANUAL = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat})); saveManualLocal(); }
     }catch(e){ /* table manual_items absente : on garde la version locale */ }
     // état de synchro réel : vert seulement si les lectures partagées ont réussi
     syncState = (!c.error && !k.error) ? "ok" : "offline";
