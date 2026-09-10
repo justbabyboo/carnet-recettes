@@ -724,7 +724,15 @@ async function pullState(){
     // articles manuels : chargés à part pour ne pas casser le reste si la table n'existe pas encore
     try{
       const mi = await supa.from("manual_items").select("id,item,cat").eq("list_id",LIST);
-      if(mi && !mi.error && Array.isArray(mi.data)){ MANUAL = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat})); saveManualLocal(); }
+      if(mi && !mi.error && Array.isArray(mi.data)){
+        const remote = mi.data.map(r=>({id:r.id,item:r.item,cat:r.cat}));
+        const remoteIds = new Set(remote.map(x=>x.id));
+        // fusion : pousse vers Supabase les articles encore uniquement locaux (rien n'est perdu)
+        const localOnly = MANUAL.filter(m=>m && m.id && !remoteIds.has(m.id));
+        localOnly.forEach(m=>dbAddManual(m.id, m.item, m.cat));
+        MANUAL = remote.concat(localOnly);
+        saveManualLocal();
+      }
     }catch(e){ /* table manual_items absente : on garde la version locale */ }
     // état de synchro réel : vert seulement si les lectures partagées ont réussi
     syncState = (!c.error && !k.error) ? "ok" : "offline";
